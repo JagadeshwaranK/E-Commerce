@@ -1,12 +1,21 @@
 import './App.css';
-import SignUp from './components/signup';
+// import SignUp from './components/signup';
+import LogIn from './components/login'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter } from 'react-router-dom';
 
 
 
 const App = () =>  {
   return (
-    <SignUp/>
+    <>
+      {/* <SignUp/><br></br> */}
+      <BrowserRouter>
+      <LogIn/>
+      </BrowserRouter>
+    </>
+
+
   );
 }
 

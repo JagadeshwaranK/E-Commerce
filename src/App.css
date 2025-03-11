@@ -9,3 +9,41 @@
   box-shadow: 0 0 10px rgba(0, 0, 0,0.1);
 
 }
+
+.login{
+  padding: 15px;
+  border: none;
+  background-color: transparent;
+  border-radius: 10px;
+  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.5);
+  align-items: center;
+  width: 30%;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+
+}
+
+
+.login h2{
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+
+}
+
+.login .SubmitButton{
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.login .dont{
+  text-align: center;
+  
+
+}
