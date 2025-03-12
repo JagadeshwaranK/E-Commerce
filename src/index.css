@@ -5,9 +5,71 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Header Styles Starts */
+.navbar {
+  background-color: #222; 
+}
+
+.navhome {
+  text-decoration: none;
+  color: white;
+}
+
+.navhome:hover {
+  color: #ccc; /* Lighter color on hover */
+}
+
+.navitem .nav-link {
+  color: white; /* White color for nav items */
+  padding: 10px 15px; /* Padding for button-like appearance */
+  position: relative; /* For positioning the vertical line */
+}
+
+.navitem .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+.navitem .nav-link::after {
+  content: '';
+  position: absolute;
+  right: -10px; /* Position the vertical line */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px; /* Width of the vertical line */
+  height: 20px; /* Height of the vertical line */
+  background-color: rgb(241, 234, 234); /* Color of the vertical line */
+}
+
+.navitem .nav-link:last-child::after {
+  display: none; /* Remove the vertical line after the last item */
+}
+
+button {
+  margin-left: 10px; /* Space between buttons */
+}
+
+button:hover {
+  color: white;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2); /* Light background on hover */
+  transition: background-color 0.5s;
+  border-radius: 10px;
+}
+.hr{
+  margin: 0;
+}
+
+/* Header Styles Ends */
+
+
+

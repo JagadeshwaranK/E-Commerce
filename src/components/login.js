@@ -1,15 +1,27 @@
-import React from 'react'
+// import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import Header from './header';
 
 const LogIn = () => {
 
+// const [email, setEmail] = useState("");
+// const [password, setPassword] = useState("");
+// const navigate = useNavigate();
+
+// const handleSubmit = (e) =>{
+//     e.preventDefault();
+    
+    
+// }
+
 
 return(
-   
+    <>
+        <Header/>
         <div className='login'>
         <Container>
             <h2>Login</h2>     
@@ -24,13 +36,15 @@ return(
                 </Form.Group>
                 <Button className="SubmitButton" type= "submit" variant="primary">Login</Button>
 
-                <Form.Group clasName="dont" controlId="formBasicCheckbox">
-                    <Form.Label>Don't have accont?</Form.Label>
+                <Form.Group className="dont" controlId="formBasicCheckbox">
+                    <Form.Label>Don't have account?</Form.Label>
                  <Link to="/signup"> <Button variant="link">Sign Up</Button></Link>
                 </Form.Group>
             </Form>
         </Container>
+       
         </div>
+    </>    
 
 );
 };
