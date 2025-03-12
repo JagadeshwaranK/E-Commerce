@@ -24,8 +24,8 @@ return(
                 </Form.Group>
                 <Button className="SubmitButton" type= "submit" variant="primary">Login</Button>
 
-                <Form.Group clasName="dont" controlId="formBasicCheckbox">
-                    <Form.Label>Don't have accont?</Form.Label>
+                <Form.Group controlId="formBasicCheckbox">
+                    <Form.Label clasName="dont">Don't have accont?</Form.Label>
                  <Link to="/signup"> <Button variant="link">Sign Up</Button></Link>
                 </Form.Group>
             </Form>
