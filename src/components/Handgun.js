@@ -82,7 +82,7 @@ const Handgun = () => {
                   <span className="badge bg-success">Top rated</span> 
               )}
               <h5 className="card-title">{product.name}</h5>
-              {product.id === 1&& (
+              {product.id === 1 && (
                 <Button variant="danger">-63%</Button>
               )}
               
