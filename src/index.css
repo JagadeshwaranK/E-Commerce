@@ -1,10 +1,12 @@
 .navbar {
   background-color: #222; 
+  border-radius: 2px;
 }
 
 .navhome {
   text-decoration: none;
   color: white;
+  
 }
 
 .navhome:hover {
@@ -16,6 +18,7 @@
   padding: 10px 15px; /* Padding for button-like appearance */
   position: relative; /* For positioning the vertical line */
   transition: color 0.3s; /* Smooth transition for color change */
+  font-style: oblique;
 }
 
 .navitem .nav-link:hover {
@@ -42,6 +45,7 @@
 
 button {
   margin-left: 10px; /* Space between buttons */
+  
 }
 
 button:hover {
@@ -53,4 +57,5 @@ button:hover {
 
 .hr {
   margin: 0;
+  
 }
