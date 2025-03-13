@@ -82,8 +82,14 @@ const Handgun = () => {
                   <span className="badge bg-success">Top rated</span> 
               )}
               <h5 className="card-title">{product.name}</h5>
+<<<<<<< HEAD
               {product.id === 1 && (
                 <Button variant="danger">-63%</Button>
+=======
+
+              {product.id === 1&& (
+                <Button variant="danger">-45%</Button>
+>>>>>>> f4aad780c3e2caf9cfa7596ba6e4cda68a4d8e1c
               )}
               
               <p className="card-text price">₹{product.price}</p>

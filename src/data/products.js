@@ -512,6 +512,10 @@ const products = [
                 category: "training", 
                 description: "12 Gauge birdshot for Training Shotgun.", image: "12g_birdshot.jpg" },
     
+<<<<<<< HEAD
             ];
+=======
+];
+>>>>>>> f4aad780c3e2caf9cfa7596ba6e4cda68a4d8e1c
 
 export default products;
