@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import './App.css';
 // // import SignUp from './components/signup';
 // // import LogIn from './components/login'; 
@@ -37,9 +38,18 @@ import Revolver from './components/Revolver';
 import Shotgun from './components/Shotgun';
 import Specialty from './components/Specialty';
 import Training from './components/Training';
+=======
+import './App.css';
+ import SignUp from './components/signup';
+import LogIn from './components/login'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './components/home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+>>>>>>> f92a0b57af097c56c22605ac16faf61c6d8697ad
 
 const App = () => {
   return (
+<<<<<<< HEAD
     <Router>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
@@ -57,6 +67,18 @@ const App = () => {
           </div>
         </div>
       </nav>
+=======
+    <>
+       <BrowserRouter>
+        <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/login' element={<LogIn />} />
+        </Routes>
+      </BrowserRouter> 
+    </>
+
+>>>>>>> f92a0b57af097c56c22605ac16faf61c6d8697ad
 
       <div className="container mt-4">
         <Routes>
