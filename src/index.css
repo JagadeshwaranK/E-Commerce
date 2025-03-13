@@ -1,0 +1,64 @@
+.navbar {
+  background-color: #222; 
+}
+
+.navhome {
+  text-decoration: none;
+  color: white;
+}
+
+.navhome:hover {
+  color: #ccc; 
+}
+
+.navitem .nav-link {
+  color: white; 
+  padding: 10px 15px; 
+  position: relative;
+  transition: color 0.3s; 
+}
+.textarea {
+  
+  height: 38px;
+  margin-top: 20px;
+ 
+  border-radius: 5px;
+}
+
+
+.navitem .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1); 
+  color: white; 
+  transition: background-color 0.3s; 
+}
+
+.navitem .nav-link::after {
+  content: '';
+  position: absolute;
+  right: -10px; 
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px; 
+  height: 20px; 
+  background-color: white; 
+  z-index: 1; 
+}
+
+.navitem .nav-link:last-child::after {
+  display: none; 
+}
+
+button {
+  margin-left: 10px;
+}
+
+button:hover {
+  color: white;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2); 
+  transition: background-color 0.5s;
+}
+
+.hr {
+  margin: 0;
+}

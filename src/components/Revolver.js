@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import products from '../data/products';
+import Footer from './footer';
+import Header from './header';
 
 const Revolver = () => {
   const revolver = products.filter(item => item.category === 'revolver');
@@ -26,6 +28,8 @@ const Revolver = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div className="row">
       {revolver.map((product) => (
         <div className="col-md-4 mb-5" key={product.id}>
@@ -54,6 +58,8 @@ const Revolver = () => {
       </div>
     ))}
     </div>
+    <Footer/>
+    </>
   );
 };
 

@@ -8,9 +8,11 @@ const Header = () => {
     <>
       <Navbar expand='lg' className='navbar navhead'>
         <Container>
-          <Navbar.Brand className='navhome text-white' href='#home'>AmmoNation</Navbar.Brand>
+          <Navbar.Brand className='navhome text-white' href='/'>AmmoNation</Navbar.Brand>
           <Form className='d-flex navb '>
-            <Form.Control type='search' placeholder='Search' className='me-2' aria-label='Search' />
+            <Form.Control type='search' className="textarea me-2" placeholder='Search' aria-label='Search' />
+
+
             <Button variant='outline-light' className='me-2'>Search</Button>
           
           <Link to='/login'> <Button variant='outline-light' className='me-2'>Login</Button></Link>
@@ -23,22 +25,25 @@ const Header = () => {
 
       <Nav className='justify-content-center navbar navitem'>
         <Nav.Item>
-          <Nav.Link href='#home'>Pistol</Nav.Link>
+          <Nav.Link href='/Handgun'>Handgun</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href='#about'>Ak47</Nav.Link>
+          <Nav.Link href='/Rifle'>Rifle</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href='#about'>Sniper</Nav.Link>
+          <Nav.Link href='/Shotgun'>Shotgun</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href='#about'>Vintage</Nav.Link>
+          <Nav.Link href='/Specialty'>Specialty</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href='#about'>Missile</Nav.Link>
+          <Nav.Link href='/Revolver'>Revolver</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href='#about'>Bom</Nav.Link>
+          <Nav.Link href='/Tactical'>Tactical</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href='/Training'>Training</Nav.Link>
         </Nav.Item>
       </Nav>
     </>

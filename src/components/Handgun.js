@@ -34,6 +34,8 @@
 
 import React, { useState } from 'react';
 import products from '../data/products';
+import Footer from './footer';
+import Header from './header';
 
 
 const Handgun = () => {
@@ -61,6 +63,8 @@ const Handgun = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div className="row">
       {handgun.map((product) => (
         <div className="col-md-4 mb-5" key={product.id}>
@@ -89,6 +93,8 @@ const Handgun = () => {
         </div>
       ))}
     </div>
+    <Footer/>
+    </>
   );
 };
 

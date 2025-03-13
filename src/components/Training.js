@@ -31,6 +31,8 @@
 
 import React, { useState } from 'react';
 import products from '../data/products';
+import Header from './header';
+import Footer from './footer';
 
 const Training = () => {
   const training = products.filter(item => item.category === 'training');
@@ -57,6 +59,8 @@ const Training = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div className="row">
       {training.map((product) => (
         <div className="col-md-4 mb-5" key={product.id}>
@@ -85,6 +89,8 @@ const Training = () => {
       </div>
     ))}
     </div>
+    <Footer/>
+    </>
   );
 };
 

@@ -36,13 +36,13 @@ return(
                 </Form.Group>
                 <Button className="SubmitButton" type= "submit" variant="primary">Login</Button>
 
-<<<<<<< HEAD
+
                 <Form.Group className="dont" controlId="formBasicCheckbox">
                     <Form.Label>Don't have account?</Form.Label>
+                </Form.Group>    
 =======
                 <Form.Group controlId="formBasicCheckbox">
                     <Form.Label clasName="dont">Don't have accont?</Form.Label>
->>>>>>> 26762b25fee97d5db4d8a5a4db09aa6506268107
                  <Link to="/signup"> <Button variant="link">Sign Up</Button></Link>
                 </Form.Group>
             </Form>

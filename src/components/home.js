@@ -107,7 +107,7 @@ const Home = () => {
         backgroundImage: `url(${process.env.PUBLIC_URL}/2.jpg)`,
     }}
 >
-    <div className="content-box"></div> {/* Transparent overlay */}
+    <div className="content-box"></div>
     <div className="content">
         <h4>Limited Time Offer</h4>
         <h3>Special Edition</h3>
