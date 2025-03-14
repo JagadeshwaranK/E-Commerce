@@ -212,3 +212,18 @@
   padding-inline-start: 1%;
 
 }
+
+/*Checkout.css */
+.header-complete {
+  background-color: #d4edda; /* Light green */
+  color: #155724; /* Dark green */
+}
+
+.header-incomplete {
+  background-color: #f8d7da; /* Light red */
+  color: #721c24; /* Dark red */
+}
+
+.text-success {
+  font-size: 1.2em;
+}
