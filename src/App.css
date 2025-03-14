@@ -48,12 +48,9 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #f9f9f9;
-<<<<<<< HEAD
-=======
   width: 25%;
   margin: 0 auto;
   background-color: #f0f0f0;
->>>>>>> f4aad780c3e2caf9cfa7596ba6e4cda68a4d8e1c
   position: absolute;
   top: 50%;
   left: 50%;
@@ -149,10 +146,6 @@
   margin-left: -2px;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f4aad780c3e2caf9cfa7596ba6e4cda68a4d8e1c
 .btn-primary:hover {
   background-color: #0984e3;
 } 
@@ -214,11 +207,7 @@
 }
 
 .text-center{
-<<<<<<< HEAD
-  font-size: 20px;
-=======
   font-size: 22px;
->>>>>>> f4aad780c3e2caf9cfa7596ba6e4cda68a4d8e1c
   text-align: center;
   padding-inline-start: 1%;
 
