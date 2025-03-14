@@ -18,7 +18,7 @@ import Home from './components/home';
 const App = () => {
   return (
     <Router>
-      {/* <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
           <div className="collapse navbar-collapse">
             <div className="navbar-nav">
@@ -32,7 +32,7 @@ const App = () => {
             </div>
           </div>
         </div>
-      </nav> */}
+      </nav> 
 
       <div className="container mt-4">
         <Routes>
