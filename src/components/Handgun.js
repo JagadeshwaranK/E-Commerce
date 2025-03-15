@@ -35,9 +35,11 @@
 import React, { useState } from 'react';
 import products from '../data/products';
 import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 
 const Handgun = () => {
+  const navigate = useNavigate();
   const handgun = products.filter(item => item.category === 'handgun');
   
   const [quantities, setQuantities] = useState(
@@ -59,6 +61,10 @@ const Handgun = () => {
       ...prevQuantities,
       [id]: Math.max(prevQuantities[id] - 1, 1),
     }));
+  };
+
+  const handleBuyClick = (product) => {
+    navigate('/Checkout', { state: { product: { ...product, quantity: quantities[product.id] } } });
   };
 
   return (
@@ -100,7 +106,7 @@ const Handgun = () => {
             </div>
             <div className="button-group">
               <button className="btn btn-outline-primary">Add to Cart</button>
-              <button className="btn btn-primary">Buy</button>
+              <button className="btn btn-primary" onClick={() => handleBuyClick(product)}>Buy</button>
             </div>
             </div>
           </div>
