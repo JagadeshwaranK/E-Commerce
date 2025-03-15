@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, Form, Button, Container, Row, Col, ListGroup, Modal } from 'react-bootstrap';
 import { useLocation,useNavigate } from 'react-router-dom';
 
+
 const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -341,14 +342,14 @@ const Checkout = () => {
               <ListGroup className="list-group-flush">
                 {cartItems.map((item) => (
                   <ListGroup.Item key={item.id}>
-                    {item.name} (x{item.quantity}): ${(item.price * item.quantity).toFixed(2)}
+                    {item.name} x {item.quantity}: ${(item.price * item.quantity).toFixed(2)}
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>Delivery Charges: FREE</ListGroup.Item>
                 <ListGroup.Item>Packaging Charge: $5.00</ListGroup.Item>
                 <ListGroup.Item>Protect Promise Fee: $3.00</ListGroup.Item>
                 <ListGroup.Item>
-                  Total Payable: ${cartItems.reduce((total, item) => total + item.price * item.quantity, 0) + 8.00}
+                  Total Payable: ${(cartItems.reduce((total, item) => total + item.price * item.quantity, 0) + 8.00) }
                 </ListGroup.Item>
               </ListGroup>
             </Card.Body>
@@ -364,7 +365,8 @@ const Checkout = () => {
         <Modal.Body>
           <div className="text-center">
             <img src= '/images/ordered.gif' alt="Order Placed" style={{ width: '300px', height: '300px' }} />
-            <p>Your order has been placed successfully. Thank you for shopping with us!</p>
+            <p>Your order has been placed successfully.</p>
+              <p>Thank you for shopping with us!</p>
           </div>
         </Modal.Body>
         <Modal.Footer>
