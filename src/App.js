@@ -41,8 +41,7 @@ const App = () => {
         <div className="container">
           <div className="collapse navbar-collapse">
             <div className="navbar-nav">
-            <Link className="nav-link" to="/Home">Home</Link>
-              <Link className="nav-link" to="/Handgun">Handgun</Link>
+            <Link className="nav-link" to="/Home">Home</Link>          
               <Link className="nav-link" to="/Handgun">Handgun</Link>
               <Link className="nav-link" to="/Rifle">Rifle</Link>
               <Link className="nav-link" to="/Shotgun">Shotgun</Link>

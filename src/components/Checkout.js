@@ -3,7 +3,7 @@ import { Card, Form, Button, Container, Row, Col, ListGroup, Modal } from 'react
 import { useLocation,useNavigate } from 'react-router-dom';
 
 
-const Checkout = () => {
+  const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -81,7 +81,7 @@ const Checkout = () => {
 
   const handleCloseModal = () => {
     setShowSuccessModal(false);
-    navigate('/#home');
+    navigate('/Home');
   };
 
   return (

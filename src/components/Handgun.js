@@ -64,15 +64,22 @@ const Handgun = ({ addToCart }) => {
   };
 
   
-  const handleAddToCart = (product) => {
-    addToCart({ ...product, quantity: quantities[product.id] });
-    navigate('/AddToCart'); // Navigate to Cart after adding to cart
+  // const handleAddToCart = (product) => {
+  //   addToCart({ ...product, quantity: quantities[product.id] });
+  //   navigate('/AddToCart'); // Navigate to Cart after adding to cart
+  // };
+
+  // const handleBuyClick = (product) => {
+  //   addToCart({ ...product, quantity: quantities[product.id] });
+  //   navigate('/Checkout'); // Navigate to Checkout after adding to cart
+  // };
+    const handleAddToCart = (product) => {
+    navigate('/AddToCart', { state: { product: { ...product, quantity: quantities[product.id] } } });
+    };
+    const handleBuyClick = (product) => {
+    navigate('/Checkout', { state: { product: { ...product, quantity: quantities[product.id] } } });
   };
 
-  const handleBuyClick = (product) => {
-    addToCart({ ...product, quantity: quantities[product.id] });
-    navigate('/Checkout'); // Navigate to Checkout after adding to cart
-  };
 
   return (
     <div className="row">

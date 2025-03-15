@@ -8,8 +8,8 @@ const AddToCart = ({ cartItems, removeFromCart }) => {
   const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const handleProceedToCheckout = () => {
-  navigate('/Checkout', { state: { cartItems } }); // Pass cart items to Checkout
-};
+    navigate('/Checkout', { state: { cartItems } }); // Pass cart items to Checkout
+  };
 
   return (
     <Container className="mt-5">
