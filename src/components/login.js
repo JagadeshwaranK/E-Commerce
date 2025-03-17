@@ -34,11 +34,11 @@ return(
                     <Form.Label>Password</Form.Label>
                     <Form.Control className='mb-3' type="password" placeholder="Password" required/>
                 </Form.Group>
-                <Button className="SubmitButton" type= "submit" variant="primary">Login</Button>
+               <Link to={"/"}> <Button className="SubmitButton" type= "submit" variant="primary">Login</Button></Link>
 
 
                 <Form.Group className="dont" controlId="formBasicCheckbox">
-                    <Form.Label>Don't have account?</Form.Label>
+
                 </Form.Group>    
                 <Form.Group controlId="formBasicCheckbox">
                     <Form.Label clasName="dont">Don't have accont?</Form.Label>

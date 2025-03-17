@@ -1,4 +1,4 @@
-.overall {
+/* .overall {
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -31,5 +31,29 @@
   
   .footer button {
     margin-left: 10px;
+  } */
+
+  .feature-img {
+    width: 60px;
+    height: auto;
   }
+  
+  .sale-banner {
+    background: #dc3545;
+    border-radius: 5px;
+  }
+  
+  .footer ul li a {
+    transition: 0.3s ease-in-out;
+  }
+  
+  .footer ul li a:hover {
+    color: #f8d210 !important;
+    text-decoration: underline;
+  }
+  
+  .hover-effect:hover {
+    color: #f8d210 !important;
+  }
+  
   

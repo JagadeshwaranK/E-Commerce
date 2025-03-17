@@ -4,58 +4,55 @@ import '../footer.css';
 const Footer = () => {
   return (
     <>
+      {/* Features Section */}
       <div className="container mt-5">
         <div className="overall d-flex justify-content-center flex-wrap text-center">
-          <div className="overallhead">
-            <img src="/world.png" alt="" />
-            <h4>Worldwide Shipping</h4>
-            <p>Lorem ipsum dolor sit amet.</p>
-            <p>Lorem ipsum dolor sit amet.</p>
-          </div>
-          <div className="overallhead">
-            <img src="/bestss.jpg" className="overimg" alt="" />
-            <h4>Best Quality</h4>
-            <p>Lorem ipsum dolor sit amet.</p>
-            <p>Lorem ipsum dolor sit amet.</p>
-          </div>
-          <div className="overallhead">
-            <img src="offer.png" alt="" />
-            <h4>Best Offers</h4>
-            <p>Lorem ipsum dolor sit amet.</p>
-            <p>Lorem ipsum dolor sit amet.</p>
-          </div>
-          <div className="overallhead">
-            <img src="/secure.jpg" alt="" />
-            <h4>Secure Payment</h4>
-            <p>Lorem ipsum dolor sit amet.</p>
-            <p>Lorem ipsum dolor sit amet.</p>
-          </div>
+          {[
+            { img: "/world.png", title: "Worldwide Shipping", desc: "Fast & reliable global shipping with secure handling." },
+            { img: "/bestss.jpg", title: "Best Quality", desc: "Top-tier firearms from trusted manufacturers." },
+            { img: "offer.png", title: "Exclusive Deals", desc: "Unlock special discounts on guns, ammo & accessories." },
+            { img: "/secure.jpg", title: "Secure Payment", desc: "Safe transactions with advanced encryption." }
+          ].map((item, index) => (
+            <div className="overallhead mx-3" key={index}>
+              <img src={item.img} className="feature-img mb-2" alt={item.title} />
+              <h4 className="fw-bold text-uppercase">{item.title}</h4>
+              <p className="text-muted">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      <hr />
+      {/* Sale Banner */}
+      <div className="sale-banner text-center py-3 text-white mt-5">
+        <h2 className="fw-bold">🔥 SALE UP TO 70% OFF ON ALL GUNS & AMMO! 🔥</h2>
+      </div>
 
-      <h2 className="sale text-center">SALE UP TO 70% OFF FOR ALL GUNS AND AMMO'S</h2>
-
-      <hr />
-
-      <footer className="footer mt-auto py-3 bg-light">
+      {/* Footer */}
+      <footer className="footer mt-auto py-4 bg-dark text-light">
         <div className="container">
-          <div className="row align-items-center text-center">
-            <div className="col-lg-4">
-              <h2>AMMONATION</h2>
-              <h4>The Best Quality Guns and Ammo</h4>
+          <div className="row text-center align-items-center">
+            {/* Branding Section */}
+            <div className="col-lg-4 mb-3">
+              <h2 className="fw-bold">AMMONATION</h2>
+              <p className="mt-4">Your trusted source for premium firearms & accessories.</p>
             </div>
-            <div className="col-lg-2">
-              <h4>Follow Us</h4>
-              <ul className="list-unstyled">
-                <li><a href="#" className="text-dark">Facebook</a></li>
-                <li><a href="#" className="text-dark">Twitter</a></li>
-                <li><a href="#" className="text-dark">Instagram</a></li>
+
+            {/* Social Media Links */}
+            <div className="col-lg-2 mb-3">
+              <h4 className="text-uppercase fw-bold">Follow Us</h4>
+              <ul className="list-unstyled mt-3">
+                {["Facebook", "Twitter", "Instagram"].map((platform, index) => (
+                  <li key={index}>
+                    <a href="#" className="text-light text-decoration-none hover-effect">{platform}</a>
+                  </li>
+                ))}
               </ul>
             </div>
-            <div className="col-lg-6">
-              <h4>Subscribe</h4>
+
+            {/* Newsletter Subscription */}
+            <div className="col-lg-6 mb-3">
+              <h4 className="fw-bold text-uppercase">Stay Updated</h4>
+              <p className="text-muted">Get the latest trends, offers & safety tips straight to your inbox!</p>
               <div className="d-flex justify-content-center">
                 <input type="email" className="form-control w-50" placeholder="Enter your email" />
                 <button className="btn btn-primary ms-2">Subscribe</button>

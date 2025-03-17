@@ -64,7 +64,7 @@ const Tactical = () => {
     <div className="row">
       {tactical.map((product) => (
         <div className="col-md-4 mb-5" key={product.id}>
-        <div className="card h-100 custom-card">
+        <div className="card h-10 custom-card">
           <img 
             src={`${process.env.PUBLIC_URL}/images/${product.image}`} 
             className="card-img-top" 

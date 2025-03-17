@@ -38,6 +38,7 @@ import Footer from './footer';
 import Header from './header';
 
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 const Handgun = () => {
@@ -70,7 +71,7 @@ const Handgun = () => {
     <div className="row">
       {handgun.map((product) => (
         <div className="col-md-4 mb-5" key={product.id}>
-          <div className="card h-100 custom-card">
+          <div className="card h-10 custom-card">
           {product.id === 1 && (
               <span className="badge bg-success position-absolute" style={{ top: '10px', left: '10px', zIndex: 1 }}>New Arrival</span>
             )}
@@ -100,7 +101,7 @@ const Handgun = () => {
               <button className="btn btn-secondary btn-sm me-2 mt-2 align-self-start" onClick={() => increment(product.id)}>+</button>
             </div>
             <div className="button-group">
-              <button className="btn btn-outline-primary">Add to Cart</button>
+             <Link to={'/cart'}> <button className="btn btn-outline-primary">Add to Cart</button></Link>
               <button className="btn btn-primary">Buy</button>
             </div>
             </div>

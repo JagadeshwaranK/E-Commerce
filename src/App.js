@@ -41,6 +41,7 @@ import Revolver from './components/Revolver';
 import Shotgun from './components/Shotgun';
 import Specialty from './components/Specialty';
 import Training from './components/Training';
+import Cart from './components/cart';
 
 const App = () => {
   return (
@@ -58,6 +59,7 @@ const App = () => {
             <Route path="/Revolver" element={<Revolver />} />
             <Route path="/Tactical" element={<Tactical />} />
             <Route path="/Training" element={<Training />} />
+            <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter> 
     </>
