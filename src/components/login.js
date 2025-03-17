@@ -40,7 +40,6 @@ return(
                 <Form.Group className="dont" controlId="formBasicCheckbox">
                     <Form.Label>Don't have account?</Form.Label>
                 </Form.Group>    
-=======
                 <Form.Group controlId="formBasicCheckbox">
                     <Form.Label clasName="dont">Don't have accont?</Form.Label>
                  <Link to="/signup"> <Button variant="link">Sign Up</Button></Link>

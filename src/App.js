@@ -1,3 +1,32 @@
+
+// import './App.css';
+// // import SignUp from './components/signup';
+// // import LogIn from './components/login'; 
+// import Shirts from './components/Shirt';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import { BrowserRouter } from 'react-router-dom';
+
+
+
+// const App = () =>  {
+//   return (
+//     <>
+//       {/* <SignUp/><br></br> */}
+//       {/* <BrowserRouter>
+//       <LogIn/>
+//       </BrowserRouter> */}
+
+//     </>
+
+
+//   );
+// }
+
+// export default App;
+
+
+
+// App.js
 import React from 'react';
 import './App.css';
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
@@ -15,6 +44,7 @@ import Training from './components/Training';
 
 const App = () => {
   return (
+
     <>
        <BrowserRouter>
         <Routes>
@@ -31,6 +61,8 @@ const App = () => {
         </Routes>
       </BrowserRouter> 
     </>
+
+   
   );
 };
 
