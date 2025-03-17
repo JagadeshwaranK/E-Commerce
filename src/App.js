@@ -1,10 +1,8 @@
 // App.js
-import React from 'react';
-import './App.css';
-import { BrowserRouter , Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SignUp from './components/signup';
-import LogIn from './components/login'; 
+import './App.css';
+import { BrowserRouter , Route, Routes } from 'react-router-dom'; 
 import Home from './components/home';
 import Rifle from './components/Rifle';
 import Handgun from './components/Handgun';
@@ -15,27 +13,46 @@ import Specialty from './components/Specialty';
 import Training from './components/Training';
 import SignUp from './components/signup';
 import LogIn from './components/login';
-import Home from './components/home';
-
+import Checkout from './components/Checkout';
+import AddToCart from './components/AddToCart';
 
 const App = () => {
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (product) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.id === product.id);
+      if (existingItem) {
+        return prevItems.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + product.quantity } : item
+        );
+      }
+      return [...prevItems, { ...product, quantity: product.quantity }];
+    });
+  };
+
+  const removeFromCart = (id) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  };
+
   return (
     <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
-          <Route path="/Handgun" element={<Handgun />} />
-          <Route path="/Rifle" element={<Rifle />} />
-          <Route path="/Shotgun" element={<Shotgun />} />
-          <Route path="/Specialty" element={<Specialty />} />
-          <Route path="/Revolver" element={<Revolver />} />
-          <Route path="/Tactical" element={<Tactical />} />
-          <Route path="/Training" element={<Training />} />
+          <Route path="/Handgun" element={<Handgun addToCart={addToCart} />} />
+          <Route path="/Rifle" element={<Rifle addToCart={addToCart} />} />
+          <Route path="/Shotgun" element={<Shotgun addToCart={addToCart} />} />
+          <Route path="/Specialty" element={<Specialty addToCart={addToCart} />} />
+          <Route path="/Revolver" element={<Revolver addToCart={addToCart} />} />
+          <Route path="/Tactical" element={<Tactical addToCart={addToCart} />} />
+          <Route path="/Training" element={<Training addToCart={addToCart} />} />
+          <Route path="/Checkout" element={<Checkout cartItems={cartItems} />} />
+          <Route path="/AddToCart" element={<AddToCart cartItems={cartItems} removeFromCart={removeFromCart} />} />
         </Routes>
         </BrowserRouter>    
   );
 };
 
 export default App;
-

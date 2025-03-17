@@ -269,8 +269,9 @@ body, html {
     width: 40%;
     border-radius: 8px;
     z-index: 2;
-    backdrop-filter: blur(8px);
-    color: white; 
+    -webkit-backdrop-filter: blur(8px); /* Adds a blur effect for a premium look */
+    backdrop-filter: blur(8px); /* Adds a blur effect for a premium look */
+    color: white; /* Ensures readability */
 }
 
 /* Headings */

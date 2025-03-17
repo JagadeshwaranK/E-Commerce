@@ -29,6 +29,9 @@ const Header = () => {
       {!isAuthPage && (
         <Nav className='justify-content-center navbar navitem'>
           <Nav.Item>
+            <Nav.Link href='/'>Home</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
             <Nav.Link href='/Handgun'>Handgun</Nav.Link>
           </Nav.Item>
           <Nav.Item>
