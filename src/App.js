@@ -20,24 +20,7 @@ import Home from './components/home';
 
 const App = () => {
   return (
-    <Router>
-      {/* <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container">
-          <div className="collapse navbar-collapse">
-            <div className="navbar-nav">
-              <Link className="nav-link" to="/Handgun">Handgun</Link>
-              <Link className="nav-link" to="/Rifle">Rifle</Link>
-              <Link className="nav-link" to="/Shotgun">Shotgun</Link>
-              <Link className="nav-link" to="/Specialty">Specialty</Link>
-              <Link className="nav-link" to="/Revolver">Revolver</Link>
-              <Link className="nav-link" to="/Tactical">Tactical</Link>
-              <Link className="nav-link" to="/Training">Training</Link>
-            </div>
-          </div>
-        </div>
-      </nav> */}
-
-      <div className="container mt-4">
+    <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<SignUp />} />
@@ -50,8 +33,7 @@ const App = () => {
           <Route path="/Tactical" element={<Tactical />} />
           <Route path="/Training" element={<Training />} />
         </Routes>
-      </div>
-    </Router>
+        </BrowserRouter>    
   );
 };
 
