@@ -43,6 +43,7 @@ body {
     margin-top: -50px; 
     display: flex;
     justify-content: center;
+    
 }
 
 .manual-btn {
@@ -257,6 +258,7 @@ body, html {
     height: 100%;
     background: rgba(197, 107, 107, 0);
     z-index: 1;
+    
 }
 
 /* Content Styling */
