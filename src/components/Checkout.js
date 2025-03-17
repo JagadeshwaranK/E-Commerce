@@ -81,7 +81,7 @@ import { useLocation,useNavigate } from 'react-router-dom';
 
   const handleCloseModal = () => {
     setShowSuccessModal(false);
-    navigate('/Home');
+    navigate('/');
   };
 
   return (

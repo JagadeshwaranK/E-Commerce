@@ -36,7 +36,7 @@ const AddToCart = ({ cartItems, removeFromCart }) => {
       </ListGroup>
       {cartItems.length > 0 && (
         <div className="mt-3">
-          <h4>Total Amount: ₹{totalAmount}</h4>
+          <h4>Total Amount: ₹{(totalAmount).toFixed(2)}</h4>
           <Button variant="success" onClick={handleProceedToCheckout}>Proceed to Checkout</Button>
         </div>
       )}
