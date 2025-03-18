@@ -25,7 +25,7 @@ const LogIn = () => {
     // Validate 
     if (formData.email === savedEmail && formData.password === savedPassword) {
       setMessage('Login successful!');
-      setTimeout(() => navigate('/home'), 1000);
+      setTimeout(() => navigate('/'), 1000);
     } else {
       setMessage('Invalid email or password.');
     }
