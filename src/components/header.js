@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Container, Nav, Form, Button } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import queryString from 'query-string'; // ✅ Import queryString
+import queryString from 'query-string'; 
 import '../index.css';
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState(queryString.parse(location.search).search || '');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [previousPage, setPreviousPage] = useState(''); // ✅ Add state for previousPage
+  const [previousPage, setPreviousPage] = useState(''); 
 
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
 
@@ -17,14 +17,14 @@ const Header = () => {
 
   useEffect(() => {
     if (searchQuery.trim() === '') {
-      navigate(previousPage); // ✅ Now previousPage is defined
+      navigate(previousPage); 
     } else {
       navigate(`/?search=${searchQuery}`);
     }
   }, [searchQuery, navigate, previousPage]);
 
   useEffect(() => {
-    setPreviousPage(location.pathname); // ✅ Now setPreviousPage is defined
+    setPreviousPage(location.pathname); 
   }, [location.pathname]);
 
   const handleSearchChange = (e) => {
