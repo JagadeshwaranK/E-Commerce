@@ -15,7 +15,7 @@ import { useLocation,useNavigate } from 'react-router-dom';
   const [currentStep, setCurrentStep] = useState(1);
   const [isShippingComplete, setIsShippingComplete] = useState(false);
   const [isSummaryComplete, setIsSummaryComplete] = useState(false);
-  const [isPaymentComplete, setIsPaymentComplete] = useState(false);
+  const [isPaymentComplete] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   // const [cartItems, setCartItems] = useState(location.state?.product ? [location.state.product] : []);
