@@ -24,7 +24,7 @@ const Header = () => {
   }, [searchQuery, navigate, previousPage]);
 
   useEffect(() => {
-    setPreviousPage(location.pathname); // ✅ Now setPreviousPage is defined
+    setPreviousPage(location.pathname); 
   }, [location.pathname]);
 
   const handleSearchChange = (e) => {
