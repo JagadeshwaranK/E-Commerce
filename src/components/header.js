@@ -1,57 +1,75 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Container, Nav, Form, Button } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom'; // Import useLocation
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import queryString from 'query-string';
 import '../index.css';
-
 
 const Header = () => {
   const location = useLocation(); // Get current path
+  const navigate = useNavigate(); // For navigation
+  const [searchQuery, setSearchQuery] = useState(queryString.parse(location.search).search || ''); // Initialize search query from URL
 
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
+
+  // List of category routes
+  const categories = ['/Handgun', '/Rifle', '/Shotgun', '/Specialty', '/Revolver', '/Tactical', '/Training'];
+
+  // Handle Search Logic
+  useEffect(() => {
+    // If searchQuery is not empty, update the URL with the search query
+    if (searchQuery.trim() !== '') {
+      navigate(`/?search=${searchQuery}`, { replace: true });
+    }
+  }, [searchQuery, navigate]);
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault(); // Prevent default form submission
+    if (searchQuery.trim() !== '') {
+      navigate(`/?search=${searchQuery}`, { replace: true });
+    }
+  };
 
   return (
     <>
       <Navbar expand='lg' className='navbar navhead'>
         <Container>
-          <Navbar.Brand className='navhome text-white' href='/'>AmmoNation</Navbar.Brand>
-          <Form className='d-flex navb '>
-            <Form.Control type='search' className="textarea me-2" placeholder='Search' aria-label='Search' />
-            <Button variant='outline-light' className='me-2'>Search</Button>
-                <Link to='/login'> <Button variant='outline-light' className='me-2'>Login</Button></Link>
-                <Link to='/signup'> <Button variant='outline-light' className='me-2'>Signup</Button></Link>
+          <Navbar.Brand className='navhome text-white' as={Link} to='/'>ARMORY X</Navbar.Brand>
+          <Form className='d-flex navb' onSubmit={handleSearchSubmit}>
+            {!isAuthPage && (
+              <Form.Control
+                type='search'
+                className='textarea me-2'
+                placeholder='Search'
+                aria-label='Search'
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+            )}
+            <Button type='submit' variant='outline-light' className='me-2'>Search</Button>
+            <Link to='/login'> <Button variant='outline-light' className='me-2'>Login</Button></Link>
+            <Link to='/signup'> <Button variant='outline-light' className='me-2'>Signup</Button></Link>
           </Form>
         </Container>
       </Navbar>
 
       <hr className='hr' />
 
-      {/* Hide Nav Items on Login and Signup Pages */}
       {!isAuthPage && (
         <Nav className='justify-content-center navbar navitem'>
           <Nav.Item>
-            <Nav.Link href='/'>Home</Nav.Link>
+            <Nav.Link as={Link} to='/' className={location.pathname === '/' ? 'active' : ''}>Home</Nav.Link>
           </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href='/Handgun'>Handgun</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href='/Rifle'>Rifle</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href='/Shotgun'>Shotgun</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href='/Specialty'>Specialty</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href='/Revolver'>Revolver</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href='/Tactical'>Tactical</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href='/Training'>Training</Nav.Link>
-          </Nav.Item>
+          {categories.map((category) => (
+            <Nav.Item key={category}>
+              <Nav.Link as={Link} to={category} className={location.pathname === category ? 'active' : ''}>
+                {category.replace('/', '')}
+              </Nav.Link>
+            </Nav.Item>
+          ))}
         </Nav>
       )}
     </>

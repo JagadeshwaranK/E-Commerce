@@ -18,7 +18,7 @@ const LogIn = () => {
     <>
       <Header />
       {showLogin && (
-        <div className='login'>
+        <div className='login' >
           <Container>
             <CloseButton className="float-end" onClick={handleClose} />
             <h2>Login</h2>
@@ -31,10 +31,9 @@ const LogIn = () => {
                 <Form.Label>Password</Form.Label>
                 <Form.Control className="mb-3" type="password" placeholder="Password" required />
               </Form.Group>
-              <Button className="SubmitButton" type="submit" variant="primary">Login</Button>
+              <Link to={'/'}></Link> <Button className="SubmitButton" type="submit" variant="primary">Login</Button>
               <Form.Group className="dont" controlId="formBasicCheckbox">
-                <Form.Label>Don't have an account?</Form.Label>
-                <Link to="/signup"><Button variant="link">Sign Up</Button></Link>
+                <Form.Label>Don't have an account?<a href='/signup'> Signup</a></Form.Label>
               </Form.Group>
             </Form>
           </Container>
@@ -45,12 +44,3 @@ const LogIn = () => {
 };
 
 export default LogIn;
-
-
-
-
-
-
-
-
-

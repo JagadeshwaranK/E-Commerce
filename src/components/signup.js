@@ -18,9 +18,10 @@ const SignUp = () => {
     <>
       <Header />
       {showSignUp && (
-        <div className='signup'>
+        <div className='signup' >
           <Container>
-            <CloseButton className="float-end" onClick={handleClose} />
+          <CloseButton className=" close" onClick={handleClose} />
+
             <h2>Signup</h2>
             <Form>
               <Form.Group controlId="formBasicUsername">
