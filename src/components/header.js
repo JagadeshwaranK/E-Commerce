@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Container, Nav, Form, Button } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import queryString from 'query-string';
 import '../index.css';
 
 const Header = () => {
   const location = useLocation(); // Get current path
   const navigate = useNavigate(); // For navigation
-  const [searchQuery, setSearchQuery] = useState(queryString.parse(location.search).search || ''); // Initialize search query from URL
+  const [searchQuery, setSearchQuery] = useState(''); // State for search query
+  const [previousPage, setPreviousPage] = useState(location.pathname); // Store previous page
 
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
 
@@ -16,21 +16,20 @@ const Header = () => {
 
   // Handle Search Logic
   useEffect(() => {
-    // If searchQuery is not empty, update the URL with the search query
-    if (searchQuery.trim() !== '') {
-      navigate(`/?search=${searchQuery}`, { replace: true });
+    if (searchQuery.trim() === '') {
+      // If search is empty, return to the previous page
+      navigate(previousPage);
+    } else {
+      navigate(`/?search=${searchQuery}`);
     }
-  }, [searchQuery, navigate]);
+  }, [searchQuery, navigate, previousPage]);
+
+  useEffect(() => {
+    setPreviousPage(location.pathname);
+  }, [location.pathname]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
-    if (searchQuery.trim() !== '') {
-      navigate(`/?search=${searchQuery}`, { replace: true });
-    }
   };
 
   return (
@@ -38,7 +37,7 @@ const Header = () => {
       <Navbar expand='lg' className='navbar navhead'>
         <Container>
           <Navbar.Brand className='navhome text-white' as={Link} to='/'>ARMORY X</Navbar.Brand>
-          <Form className='d-flex navb' onSubmit={handleSearchSubmit}>
+          <Form className='d-flex navb'>
             {!isAuthPage && (
               <Form.Control
                 type='search'
@@ -49,7 +48,6 @@ const Header = () => {
                 onChange={handleSearchChange}
               />
             )}
-            <Button type='submit' variant='outline-light' className='me-2'>Search</Button>
             <Link to='/login'> <Button variant='outline-light' className='me-2'>Login</Button></Link>
             <Link to='/signup'> <Button variant='outline-light' className='me-2'>Signup</Button></Link>
           </Form>

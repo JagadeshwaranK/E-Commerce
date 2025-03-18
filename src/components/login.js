@@ -30,6 +30,12 @@ const LogIn = () => {
       setMessage('Invalid email or password.');
     }
   };
+    const [showLogin, setShowLogin] = useState(true);
+  
+    const handleClose = () => {
+      setShowLogin(false);
+      navigate('/');
+    };
 
   return (
     <>
@@ -88,8 +94,7 @@ const LogIn = () => {
             </Form.Group>
             <Button className="SubmitButton" type="submit" variant="primary">Login</Button>
             <Form.Group className="dont" controlId="formBasicCheckbox">
-              <Form.Label>Don't have an account?</Form.Label>
-              <Link to="/signup"><Button variant="link">Sign Up</Button></Link>
+              <Form.Label>Don't have an account? <a href="/signup">Signup</a></Form.Label>
             </Form.Group>
           </Form>
         </Container>

@@ -35,12 +35,20 @@ const SignUp = () => {
     setTimeout(() => navigate('/login'), 1500); 
   };
 
+  const [showSignUp, setShowSignUp] = useState(true);
+    
+  const handleClose = () => {
+        setShowSignUp(false);
+        navigate('/');
+      };
+
   return (
     <>
       <Header />
+      { showSignUp && (
       <div className="signup">
         <Container>
-          <CloseButton className="float-end" onClick={() => navigate('/home')} />
+          <CloseButton className="float-end" onClick={handleClose} />
           <h2>Signup</h2>
           <Form onSubmit={handleSubmit}>
             {message && <div className="alert alert-info">{message}</div>}
@@ -81,13 +89,13 @@ const SignUp = () => {
               />
             </Form.Group>
             <Button type="submit" variant="primary">Create Account</Button>
-            <Form.Group className="mt-3">
-              <Form.Label>Already have an account?</Form.Label>
-              <Link to="/login"><Button variant="link">Log In</Button></Link>
+            <Form.Group className="mt-3 dont">
+              <Form.Label>Already have an account? <a href="/login">Login</a></Form.Label>
             </Form.Group>
           </Form>
         </Container>
       </div>
+      )}
     </>
   );
 };
