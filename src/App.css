@@ -234,7 +234,7 @@
     }
 
     .product-image {
-      height: 280px; /* Default height for larger screens */
+      height: 240px; /* Default height for larger screens */
       object-fit: cover;
       border-top-left-radius: 10px; 
       border-top-right-radius: 10px;
@@ -272,7 +272,7 @@
 
     @media (max-width: 576px) {
       .product-image {
-        height: 250px; /* Resize image for mobile devices */
+        height: 20px; /* Resize image for mobile devices */
       }
       .quantity-container span {
         font-size: 1rem; /* Adjust quantity font size for mobile */
