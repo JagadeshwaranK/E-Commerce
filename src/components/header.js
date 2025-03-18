@@ -1,43 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Container, Nav, Form, Button } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import queryString from 'query-string';
+import queryString from 'query-string'; // ✅ Import queryString
 import '../index.css';
 
 const Header = () => {
-  const location = useLocation(); // Get current path
-  const navigate = useNavigate(); // For navigation
-  const [searchQuery, setSearchQuery] = useState(queryString.parse(location.search).search || ''); // Initialize search query from URL
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Authentication state
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState(queryString.parse(location.search).search || '');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [previousPage, setPreviousPage] = useState(''); // ✅ Add state for previousPage
 
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
 
-  // List of category routes
   const categories = ['/Handgun', '/Rifle', '/Shotgun', '/Specialty', '/Revolver', '/Tactical', '/Training'];
 
-  // Handle Search Logic
   useEffect(() => {
-    // If searchQuery is not empty, update the URL with the search query
-    if (searchQuery.trim() !== '') {
-      navigate(`/?search=${searchQuery}`, { replace: true });
+    if (searchQuery.trim() === '') {
+      navigate(previousPage); // ✅ Now previousPage is defined
+    } else {
+      navigate(`/?search=${searchQuery}`);
     }
-  }, [searchQuery, navigate]);
+  }, [searchQuery, navigate, previousPage]);
+
+  useEffect(() => {
+    setPreviousPage(location.pathname); // ✅ Now setPreviousPage is defined
+  }, [location.pathname]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
     if (searchQuery.trim() !== '') {
       navigate(`/?search=${searchQuery}`, { replace: true });
     }
   };
 
   const handleLogout = () => {
-    setIsAuthenticated(false); 
-    localStorage.removeItem('isLoggedIn'); 
-    navigate('/login');
+    setIsAuthenticated(false);
+    localStorage.removeItem('isLoggedIn');
+    navigate('/');
   };
 
   useEffect(() => {
@@ -61,11 +65,10 @@ const Header = () => {
                 onChange={handleSearchChange}
               />
             )}
-            <Button type='submit' variant='outline-light' className='me-2'>Search</Button>
             {!isAuthenticated ? (
               <>
-                <Link to='/login'> <Button variant='outline-light' className='me-2'>Login</Button></Link>
-                <Link to='/signup'> <Button variant='outline-light' className='me-2'>Signup</Button></Link>
+                <Link to='/login'><Button variant='outline-light' className='me-2'>Login</Button></Link>
+                <Link to='/signup'><Button variant='outline-light' className='me-2'>Signup</Button></Link>
               </>
             ) : (
               <Button variant='outline-light' className='me-2' onClick={handleLogout}>Logout</Button>

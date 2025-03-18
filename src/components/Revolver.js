@@ -67,7 +67,7 @@ const Revolver = ({ addToCart }) => {
               {searchResults.map((product) => (
                 <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={product.id}>
                   <div className="card shadow-sm">
-                    <img
+                    <img 
                       src={`${process.env.PUBLIC_URL}/images/${product.image}`}
                       className="card-img-top product-image"
                       alt={product.name}

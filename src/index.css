@@ -18,6 +18,10 @@
   flex-grow: 1; /* Allows search bar to take up space */
   max-width: 500px; /* Adjust max width */
 }
+.navitem .active {
+  font-weight: bold;
+  color: #ffae00; /* Change to your desired active color */
+}
 
 .textarea {
   height: 40px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ListGroup, Button, Container } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AddToCart = ({ cartItems, removeFromCart }) => {
   const navigate = useNavigate();
@@ -35,6 +35,7 @@ const AddToCart = ({ cartItems, removeFromCart }) => {
       </ListGroup>
       {cartItems.length > 0 && (
         <div className="mt-3">
+          <Link to={'/'}><Button className='mt-2 mb-2'>Add More</Button></Link>
           <h4>Total Amount: ₹{(totalAmount).toFixed(2)}</h4>
           <Button variant="success" onClick={handleProceedToCheckout}>Proceed to Checkout</Button>
         </div>

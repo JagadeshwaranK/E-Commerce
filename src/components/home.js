@@ -147,6 +147,10 @@ const Home = () => {
               <button>SHOP NOW</button>
             </div>
           </div>
+
+          {/* hover  */}
+
+          
         </>
       )}
 
