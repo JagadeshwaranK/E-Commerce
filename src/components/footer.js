@@ -43,7 +43,7 @@ const Footer = () => {
               <ul className="list-unstyled mt-3">
                 {["Facebook", "Twitter", "Instagram"].map((platform, index) => (
                   <li key={index}>
-                    <a href="#" className="text-light text-decoration-none hover-effect">{platform}</a>
+                    <a href="javascript:void(0);" className="text-light text-decoration-none hover-effect">{platform}</a>
                   </li>
                 ))}
               </ul>
