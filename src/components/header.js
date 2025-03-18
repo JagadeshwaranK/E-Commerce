@@ -71,8 +71,14 @@ const Header = () => {
                 <Link to='/signup'><Button variant='outline-light' className='me-2'>Signup</Button></Link>
               </>
             ) : (
+              <>
               <Button variant='outline-light' className='me-2' onClick={handleLogout}>Logout</Button>
+              <Link to='/addtocart'>
+              <Button variant='outline-light' className='me-2'>Cart</Button>
+            </Link>
+            </>
             )}
+            
           </Form>
         </Container>
       </Navbar>
