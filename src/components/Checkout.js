@@ -21,6 +21,7 @@ import { useLocation,useNavigate } from 'react-router-dom';
   // const [cartItems, setCartItems] = useState(location.state?.product ? [location.state.product] : []);
   //  const [cartItems, setCartItems] = useState(location.state?.cartItems || []);
 
+
    const [cartItems, setCartItems] = useState(
     location.state?.cartItems || (location.state?.product ? [location.state.product] : [])
   );
@@ -86,7 +87,7 @@ import { useLocation,useNavigate } from 'react-router-dom';
 
   const handleCloseModal = () => {
     setShowSuccessModal(false);
-    navigate('/Home');
+    navigate('/');
   };
 
   return (

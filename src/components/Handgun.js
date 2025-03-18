@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import products from '../data/products';
+import Footer from './footer';
+import Header from './header';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -48,6 +50,9 @@ const Handgun = ({addToCart}) => {
 
 
   return (
+    <>
+    <Header/>
+    <h1>HandGun</h1>
     <div className="row">
       {handgun.map((product) => (
         <div className="col-md-4 mb-5" key={product.id}>
@@ -89,6 +94,8 @@ const Handgun = ({addToCart}) => {
         </div>
       ))}
     </div>
+    <Footer/>
+    </>
   );
 };
 

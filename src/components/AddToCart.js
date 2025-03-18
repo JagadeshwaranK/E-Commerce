@@ -7,8 +7,8 @@ const AddToCart = ({ cartItems, removeFromCart }) => {
   const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const handleProceedToCheckout = () => {
-    navigate('/Checkout', { state: { cartItems: cartItems } }); // Pass cart items to Checkout
-    
+    console.log('Proceeding to checkout with items:', cartItems); // Debugging log
+    navigate('/Checkout', { state: { cartItems } }); // Pass cart items to Checkout
   };
 
   return (
@@ -35,7 +35,7 @@ const AddToCart = ({ cartItems, removeFromCart }) => {
       </ListGroup>
       {cartItems.length > 0 && (
         <div className="mt-3">
-          <h4>Total Amount: ₹{totalAmount}</h4>
+          <h4>Total Amount: ₹{(totalAmount).toFixed(2)}</h4>
           <Button variant="success" onClick={handleProceedToCheckout}>Proceed to Checkout</Button>
         </div>
       )}
