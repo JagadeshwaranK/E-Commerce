@@ -14,7 +14,7 @@ import SignUp from './components/signup';
 import LogIn from './components/login';
 import Home from './components/home';
 import Checkout from './components/Checkout';
-import AddToCart from './components/AddToCart'; // Import the AddToCart component
+import AddToCart from './components/AddToCart'; 
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -60,12 +60,12 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/Handgun" element={<Handgun addToCart={addToCart} />} />
-          <Route path="/Rifle" element={<Rifle />} />
-          <Route path="/Shotgun" element={<Shotgun />} />
-          <Route path="/Specialty" element={<Specialty />} />
-          <Route path="/Revolver" element={<Revolver />} />
-          <Route path="/Tactical" element={<Tactical />} />
-          <Route path="/Training" element={<Training />} />
+          <Route path="/Rifle" element={<Rifle addToCart={addToCart} />} />
+          <Route path="/Shotgun" element={<Shotgun addToCart={addToCart}/>} />
+          <Route path="/Specialty" element={<Specialty addToCart={addToCart} />} />
+          <Route path="/Revolver" element={<Revolver addToCart={addToCart} />} />
+          <Route path="/Tactical" element={<Tactical addToCart={addToCart}/>} />
+          <Route path="/Training" element={<Training addToCart={addToCart}/>} />
           <Route path="/Checkout" element={<Checkout cartItems={cartItems} />} />
           <Route path="/AddToCart" element={<AddToCart cartItems={cartItems} removeFromCart={removeFromCart} />} />
         </Routes>

@@ -1,4 +1,3 @@
-// AddToCart.js
 import React from 'react';
 import { ListGroup, Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +7,8 @@ const AddToCart = ({ cartItems, removeFromCart }) => {
   const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const handleProceedToCheckout = () => {
-    navigate('/Checkout', { state: { cartItems } }); // Pass cart items to Checkout
+    navigate('/Checkout', { state: { cartItems: cartItems } }); // Pass cart items to Checkout
+    
   };
 
   return (

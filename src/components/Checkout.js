@@ -18,8 +18,13 @@ import { useLocation,useNavigate } from 'react-router-dom';
   const [isPaymentComplete, setIsPaymentComplete] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const [cartItems, setCartItems] = useState(location.state?.product ? [location.state.product] : []);
+  // const [cartItems, setCartItems] = useState(location.state?.product ? [location.state.product] : []);
+  //  const [cartItems, setCartItems] = useState(location.state?.cartItems || []);
 
+   const [cartItems, setCartItems] = useState(
+    location.state?.cartItems || (location.state?.product ? [location.state.product] : [])
+  );
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({

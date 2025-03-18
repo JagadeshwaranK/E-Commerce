@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import products from '../data/products';
+import { useNavigate } from 'react-router-dom';
 
-const Rifle = () => {
+const Rifle = ({addToCart}) => {
+  const navigate = useNavigate();
   const rifle = products.filter(item => item.category === 'rifle');
   
   const [quantities, setQuantities] = useState(
@@ -25,6 +27,15 @@ const Rifle = () => {
     }));
   };
 
+  const handleAddToCart = (product) => {
+    addToCart({ ...product, quantity: quantities[product.id] });
+    navigate('/AddToCart'); // Navigate to Cart after adding to cart
+  };
+
+    const handleBuyClick = (product) => {
+      navigate('/Checkout', { state: { product: { ...product, quantity: quantities[product.id] } } });
+  };
+
   return (
     <div className="row">
       {rifle.map((product) => (
@@ -46,8 +57,8 @@ const Rifle = () => {
             <button className="btn btn-secondary btn-sm me-2 mt-2 align-self-start" onClick={() => increment(product.id)}>+</button>
           </div>
           <div className="button-group">
-            <button className="btn btn-outline-primary">Add to Cart</button>
-            <button className="btn btn-primary">Buy</button>
+          <button className="btn btn-outline-primary" onClick={() => handleAddToCart(product)}>Add to Cart</button>
+          <button className="btn btn-primary" onClick={() => handleBuyClick(product)}>Buy</button>
           </div>
           </div>
         </div>
