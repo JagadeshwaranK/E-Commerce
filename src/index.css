@@ -1,61 +1,61 @@
 .navbar {
-  background-color: #222; 
-  border-radius: 2px;
+  background-color: #222;
+  padding: 15px 0; /* Adjusted padding for better spacing */
 }
 
 .navhome {
   text-decoration: none;
   color: white;
-  
+  font-size: 1.8rem; /* Increase font size for e-commerce look */
+  font-weight: bold;
 }
 
 .navhome:hover {
-  color: #ccc; /* Lighter color on hover */
+  color: #ccc;
+}
+
+.navb {
+  flex-grow: 1; /* Allows search bar to take up space */
+  max-width: 500px; /* Adjust max width */
+}
+.navitem .active {
+  font-weight: bold;
+  color: #ffae00; /* Change to your desired active color */
+}
+
+.textarea {
+  height: 40px;
+  margin-top: 16px;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.navitem {
+  padding: 10px 0;
 }
 
 .navitem .nav-link {
-  color: white; /* White color for nav items */
-  padding: 10px 15px; /* Padding for button-like appearance */
-  position: relative; /* For positioning the vertical line */
-  transition: color 0.3s; /* Smooth transition for color change */
-  font-style: oblique;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.1rem; /* Slightly larger font for navigation */
+  font-weight: 500;
 }
 
 .navitem .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
-  color: white; /* Ensure text color is white on hover */
-  transition: background-color 0.3s; /* Smooth transition */
-}
-
-.navitem .nav-link::after {
-  content: '';
-  position: absolute;
-  right: -10px; /* Position the vertical line */
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1px; /* Width of the vertical line */
-  height: 20px; /* Height of the vertical line */
-  background-color: white; /* Change to white for better visibility */
-  z-index: 1; /* Ensure it appears above other elements */
-}
-
-.navitem .nav-link:last-child::after {
-  display: none; /* Remove the vertical line after the last item */
-}
-
-button {
-  margin-left: 10px; /* Space between buttons */
-  
-}
-
-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
   color: white;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.2); /* Light background on hover */
-  transition: background-color 0.5s;
+  transition: background-color 0.3s;
 }
 
 .hr {
   margin: 0;
-  
+  border: 0;
+  height: 2px;
+  background-color: white;
+}
+
+button {
+  margin-left: 10px;
+  font-size: 1rem;
+  padding: 8px 16px;
 }
