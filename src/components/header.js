@@ -8,6 +8,7 @@ const Header = () => {
   const location = useLocation(); // Get current path
   const navigate = useNavigate(); // For navigation
   const [searchQuery, setSearchQuery] = useState(queryString.parse(location.search).search || ''); // Initialize search query from URL
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Authentication state
 
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
 
@@ -33,6 +34,17 @@ const Header = () => {
     }
   };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false); 
+    localStorage.removeItem('isLoggedIn'); 
+    navigate('/login');
+  };
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    setIsAuthenticated(loggedIn);
+  }, []);
+
   return (
     <>
       <Navbar expand='lg' className='navbar navhead'>
@@ -50,8 +62,14 @@ const Header = () => {
               />
             )}
             <Button type='submit' variant='outline-light' className='me-2'>Search</Button>
-            <Link to='/login'> <Button variant='outline-light' className='me-2'>Login</Button></Link>
-            <Link to='/signup'> <Button variant='outline-light' className='me-2'>Signup</Button></Link>
+            {!isAuthenticated ? (
+              <>
+                <Link to='/login'> <Button variant='outline-light' className='me-2'>Login</Button></Link>
+                <Link to='/signup'> <Button variant='outline-light' className='me-2'>Signup</Button></Link>
+              </>
+            ) : (
+              <Button variant='outline-light' className='me-2' onClick={handleLogout}>Logout</Button>
+            )}
           </Form>
         </Container>
       </Navbar>

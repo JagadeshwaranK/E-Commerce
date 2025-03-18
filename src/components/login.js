@@ -8,6 +8,7 @@ import Header from './header';
 const LogIn = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [message, setMessage] = useState('');
+  const [showLogin, setshowLogin] = useState(true);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -25,11 +26,16 @@ const LogIn = () => {
     // Validate 
     if (formData.email === savedEmail && formData.password === savedPassword) {
       setMessage('Login successful!');
+      localStorage.setItem('isLoggedIn', 'true');
       setTimeout(() => navigate('/'), 1000);
     } else {
       setMessage('Invalid email or password.');
     }
   };
+
+  const handleClose = () => {
+    setshowLogin(false);
+  }
 
   return (
     <>
@@ -58,7 +64,7 @@ const LogIn = () => {
       )}
       <div className="login">
         <Container>
-          <CloseButton className="float-end" onClick={() => navigate('/home')} />
+          <CloseButton className="float-end" onClick={() => navigate('/')} />
           <h2>Login</h2>
           <Form onSubmit={handleSubmit}>
             {message && <div className={`alert ${message === 'Login successful!' ? 'alert-success' : 'alert-danger'}`}>{message}</div>}

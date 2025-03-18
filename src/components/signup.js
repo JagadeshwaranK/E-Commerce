@@ -40,7 +40,7 @@ const SignUp = () => {
       <Header />
       <div className="signup">
         <Container>
-          <CloseButton className="float-end" onClick={() => navigate('/home')} />
+          <CloseButton className="float-end" onClick={() => navigate('/')} />
           <h2>Signup</h2>
           <Form onSubmit={handleSubmit}>
             {message && <div className="alert alert-info">{message}</div>}
