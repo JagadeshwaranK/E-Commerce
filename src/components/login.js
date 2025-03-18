@@ -32,12 +32,6 @@ const LogIn = () => {
       setMessage('Invalid email or password.');
     }
   };
-    const [showLogin, setShowLogin] = useState(true);
-  
-    const handleClose = () => {
-      setShowLogin(false);
-      navigate('/');
-    };
 
   const handleClose = () => {
     setshowLogin(false);
