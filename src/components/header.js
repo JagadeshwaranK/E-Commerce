@@ -41,7 +41,7 @@ const Header = () => {
   const handleLogout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem('isLoggedIn');
-    navigate('/login');
+    navigate('/');
   };
 
   useEffect(() => {
