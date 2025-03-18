@@ -210,10 +210,10 @@ import { useLocation,useNavigate } from 'react-router-dom';
                     {cartItems.length > 0 ? (
                       cartItems.map((item) => (
                         <div key={item.id} className="d-flex justify-content-between align-items-center mb-2">
-                          <img  src={`/images/${item.image}`} alt={item.name} style={{ width: '100px', height: '100px' }} />
+                          <img  src={`/images/₹{item.image}`} alt={item.name} style={{ width: '100px', height: '100px' }} />
                           <div className="flex-grow-1 mx-2">
                             <h6>{item.name}</h6>
-                            <p>Price: ${item.price.toFixed(2)} | Quantity: {item.quantity}</p>
+                            <p>Price: ₹{item.price.toFixed(2)} | Quantity: {item.quantity}</p>
                           </div>
                           <div>
                             <Button variant="outline-secondary" onClick={() => handleQuantityChange(item.id, -1)}>-</Button>
@@ -348,14 +348,14 @@ import { useLocation,useNavigate } from 'react-router-dom';
               <ListGroup className="list-group-flush">
                 {cartItems.map((item) => (
                   <ListGroup.Item key={item.id}>
-                    {item.name} x {item.quantity}: ${(item.price * item.quantity).toFixed(2)}
+                    {item.name} x {item.quantity}: ₹{(item.price * item.quantity).toFixed(2)}
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>Delivery Charges: FREE</ListGroup.Item>
-                <ListGroup.Item>Packaging Charge: $5.00</ListGroup.Item>
-                <ListGroup.Item>Protect Promise Fee: $3.00</ListGroup.Item>
+                <ListGroup.Item>Packaging Charge: ₹5.00</ListGroup.Item>
+                <ListGroup.Item>Protect Promise Fee: ₹3.00</ListGroup.Item>
                 <ListGroup.Item>
-                  Total Payable: ${(cartItems.reduce((total, item) => total + item.price * item.quantity, 0) + 8.00) }
+                  Total Payable: ₹{(cartItems.reduce((total, item) => total + item.price * item.quantity, 0) + 8.00) }
                 </ListGroup.Item>
               </ListGroup>
             </Card.Body>
