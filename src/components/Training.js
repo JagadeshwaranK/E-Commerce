@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import products from '../data/products';
-<<<<<<< HEAD
-import { useNavigate } from 'react-router-dom';
-
-const Training = ({addToCart}) => {
-=======
 import Header from './header';
 import Footer from './footer';
 import { useNavigate } from 'react-router-dom';
 
 const Training = ({ addToCart }) => {
->>>>>>> 63b44a335a1e6e3d2b4e9a30fa14bdd1dd66c9a9
   const navigate = useNavigate();
   const training = products.filter(item => item.category === 'training');
   
