@@ -22,6 +22,12 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const existingEmail = localStorage.getItem('email');
+    if (formData.email === existingEmail) {
+      setMessage('Account already exists with this email ID.');
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       setMessage('Passwords do not match.');
       return;
