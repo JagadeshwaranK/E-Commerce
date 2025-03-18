@@ -83,3 +83,4 @@ const Revolver = ({ addToCart }) => {
 };
 
 export default Revolver;
+

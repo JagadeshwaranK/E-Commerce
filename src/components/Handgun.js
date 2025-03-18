@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 
-const Handgun = ({ addToCart }) => {
+const Handgun = ({addToCart}) => {
   const navigate = useNavigate();
   const handgun = products.filter(item => item.category === 'handgun');
   

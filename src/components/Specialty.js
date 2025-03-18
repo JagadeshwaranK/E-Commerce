@@ -29,18 +29,11 @@ const Specialty = ({ addToCart }) => {
     }));
   };
 
-    const handleAddToCart = (product) => {
+  const handleAddToCart = (product) => {
     addToCart({ ...product, quantity: quantities[product.id] });
-    navigate('/AddToCart'); // Navigate to Cart after adding to cart
+    navigate('/AddToCart'); 
   };
 
-  // const handleBuyClick = (product) => {
-  //   addToCart({ ...product, quantity: quantities[product.id] });
-  //   navigate('/Checkout'); // Navigate to Checkout after adding to cart
-  // };
-  //   const handleAddToCart = (product) => {
-  //     navigate('/AddToCart', { state: { product: { ...product, quantity: quantities[product.id] } } });
-  //   };
     const handleBuyClick = (product) => {
       navigate('/Checkout', { state: { product: { ...product, quantity: quantities[product.id] } } });
   };

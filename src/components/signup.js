@@ -6,40 +6,88 @@ import '../App.css';
 import Header from './header';
 
 const SignUp = () => {
-  const [showSignUp, setShowSignUp] = useState(true);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleClose = () => {
-    setShowSignUp(false);
-    navigate('/');
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      setMessage('Passwords do not match.');
+      return;
+    }
+
+// Saved mail & pass
+    localStorage.setItem('email', formData.email);
+    localStorage.setItem('password', formData.password);
+
+    setMessage('Account created successfully!');
+    setTimeout(() => navigate('/login'), 1500); 
   };
 
   return (
     <>
       <Header />
-      {showSignUp && (
-        <div className='signup'>
-          <Container>
-            <CloseButton className="float-end" onClick={handleClose} />
-            <h2>Signup</h2>
-            <Form>
-              <Form.Group controlId="formBasicUsername">
-                <Form.Label>Email</Form.Label>
-                <Form.Control className="mb-3" type="email" placeholder="Enter email" required />
-              </Form.Group>
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control className='mb-3' type="password" placeholder="Password" required />
-              </Form.Group>
-              <Form.Group controlId="formBasicConfirmPassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control className='mb-3' type="password" placeholder="Confirm Password" required />
-              </Form.Group>
-              <Link to="/login"><Button type="submit" variant="primary">Create Account</Button></Link>
-            </Form>
-          </Container>
-        </div>
-      )}
+      <div className="signup">
+        <Container>
+          <CloseButton className="float-end" onClick={() => navigate('/home')} />
+          <h2>Signup</h2>
+          <Form onSubmit={handleSubmit}>
+            {message && <div className="alert alert-info">{message}</div>}
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                className="mb-3"
+                type="email"
+                name="email"
+                placeholder="Enter email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                className="mb-3"
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicConfirmPassword">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                className="mb-3"
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Button type="submit" variant="primary">Create Account</Button>
+            <Form.Group className="mt-3">
+              <Form.Label>Already have an account?</Form.Label>
+              <Link to="/login"><Button variant="link">Log In</Button></Link>
+            </Form.Group>
+          </Form>
+        </Container>
+      </div>
     </>
   );
 };

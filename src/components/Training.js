@@ -65,7 +65,7 @@ const Training = ({ addToCart }) => {
 
           <div className="d-flex align-items-center mt-3">
             <button className="btn btn-secondary btn-sm me-2 mt-2 align-self-start" onClick={() => decrement(product.id)}>-</button> 
-            <span className="text-center mx-2 box">{quantities[product.id]}</span>
+            <span className="text-center mx-2 ">{quantities[product.id]}</span>
             <button className="btn btn-secondary btn-sm me-2 mt-2 align-self-start" onClick={() => increment(product.id)}>+</button>
           </div>
           <div className="button-group">

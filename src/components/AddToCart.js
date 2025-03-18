@@ -1,4 +1,3 @@
-// AddToCart.js
 import React from 'react';
 import { ListGroup, Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
