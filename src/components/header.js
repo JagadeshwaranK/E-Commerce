@@ -26,6 +26,12 @@ const Header = () => {
   }, [localStorage.getItem('isLoggedIn')]);
   
 
+    const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    setIsAuthenticated(false);
+    navigate('/');
+  };
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -37,14 +43,9 @@ const Header = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-    setIsAuthenticated(false);
-    navigate('/');
-  };
 
   const toggleSearch = () => setShowSearch(!showSearch);
-
+ /* const closeSearch = () => setShowSearch(false);*/
 
   return (
     <>
