@@ -15,11 +15,15 @@ const Header = () => {
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
   const categories = ['/Handgun', '/Rifle', '/Shotgun', '/Specialty', '/Revolver', '/Tactical', '/Training'];
 
-  useEffect(() => {
-    // Update search query when URL changes
-    const queryParams = queryString.parse(location.search);
-    setSearchQuery(queryParams.search || '');
-  }, [location.search]);
+useEffect(() => {
+    if (location.search) {
+        const queryParams = queryString.parse(location.search);
+        setSearchQuery(queryParams.search || '');
+    } else {
+        setSearchQuery(''); // Reset to default if no query string
+    }
+}, [location.search]);
+
 
   useEffect(() => {
     // Check authentication on each render
