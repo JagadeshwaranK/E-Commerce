@@ -135,67 +135,6 @@ const ShotGun = ({ addToCart }) => {
       </div>
 
       <Footer />
-
-      {/* Responsive CSS */}
-      <style>
-        {`
-          .custom-card {
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.2s ease-in-out;
-          }
-          .custom-card:hover {
-            transform: scale(1.03);
-          }
-          .product-image {
-            height: 200px;
-            object-fit: cover;
-          }
-          .quantity-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-          
-          /* Responsive Styles */
-          @media (max-width: 768px) {
-            .product-image {
-              height: 180px;
-            }
-            .card-title {
-              font-size: 1.1rem;
-            }
-            .card-text {
-              font-size: 0.9rem;
-            }
-          }
-
-          @media (max-width: 576px) {
-            .product-image {
-              height: 160px;
-            }
-            .quantity-container span {
-              font-size: 1rem;
-            }
-            .btn {
-              font-size: 0.9rem; /* Adjust button size for mobile */
-            }
-          }
-
-          @media (max-width: 425px) {
-            .product-image {
-              height: 150px; /* Adjust image height for smaller screens */
-            }
-            .card-title {
-              font-size: 1rem; /* Adjust title size for smaller screens */
-            }
-            .card-text {
-              font-size: 0.8rem; /* Adjust text size for smaller screens */
-            }
-          }
- }
-        `}
-      </style>
     </>
   );
 };

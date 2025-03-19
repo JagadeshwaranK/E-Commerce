@@ -35,10 +35,12 @@ const AddToCart = ({ cartItems, removeFromCart }) => {
       </ListGroup>
       {cartItems.length > 0 && (
         <div className="mt-3">
-          <Link to={'/'}><Button className='mt-2 mb-2'>Add More</Button></Link>
-          <h4>Total Amount: ₹{(totalAmount).toFixed(2)}</h4>
-          <Button variant="success" onClick={handleProceedToCheckout}>Proceed to Checkout</Button>
-        </div>
+        <Link to={`/${cartItems[0].category}`}>
+          <Button className="mt-2 mb-2">Add More</Button>
+        </Link>
+        <h4>Total Amount: ₹{totalAmount.toFixed(2)}</h4>
+        <Button variant="success" onClick={handleProceedToCheckout}>Proceed to Checkout</Button>
+      </div>
       )}
     </Container>
   );
