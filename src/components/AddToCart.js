@@ -12,6 +12,7 @@ const AddToCart = ({ cartItems, removeFromCart }) => {
   };
 
   return (
+    
     <Container className="mt-5">
       <h2>Your Cart</h2>
       <ListGroup>

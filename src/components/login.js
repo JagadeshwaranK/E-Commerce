@@ -38,7 +38,14 @@ const LogIn = () => {
   }
 
   return (
-    <>
+    <div style={{
+      backgroundImage: `url("${process.env.PUBLIC_URL}/loginbg2.jpg")`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      height: "100vh",
+      width: "100vw",
+    }}>
+    
      
       {showLogin && (
         <div className='login' >
@@ -99,7 +106,7 @@ const LogIn = () => {
           </Form>
         </Container>
       </div>
-    </>
+    </div>
   );
 };
 
