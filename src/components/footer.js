@@ -59,7 +59,7 @@ const Footer = () => {
   <div className="d-flex flex-column flex-md-row justify-content-center justify-content-lg-start align-items-center">
     <input
       type="email"
-      className="form-control w-75 w-md-50 mb-2 mb-md-0"
+      className="form-control w-50 w-md-50 mb-2 mb-md-0"
       placeholder="Enter your email"
     />
     <button className="btn btn-primary ms-md-2">Subscribe</button>

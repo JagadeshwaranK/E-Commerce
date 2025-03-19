@@ -1,4 +1,3 @@
-// Header.js
 import React, { useState, useEffect } from 'react'; 
 import { Navbar, Container, Nav, Form, Button, Offcanvas } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -8,37 +7,44 @@ import '../index.css';
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState(queryString.parse(location.search).search || '');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isLoggedIn') === 'true');
   const [showMenu, setShowMenu] = useState(false);
-  const [showSearch, setShowSearch] = useState(false); // State to control search bar visibility
+  const [showSearch, setShowSearch] = useState(false);
 
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
   const categories = ['/Handgun', '/Rifle', '/Shotgun', '/Specialty', '/Revolver', '/Tactical', '/Training'];
 
   useEffect(() => {
-    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    setIsAuthenticated(loggedIn);
-  }, []);
+    // Update search query when URL changes
+    const queryParams = queryString.parse(location.search);
+    setSearchQuery(queryParams.search || '');
+  }, [location.search]);
+
+  useEffect(() => {
+    // Check authentication on each render
+    setIsAuthenticated(localStorage.getItem('isLoggedIn') === 'true');
+  }, [localStorage.getItem('isLoggedIn')]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/?search=${searchQuery}`);
+    }
+  };
+
   const handleLogout = () => {
-    setIsAuthenticated(false);
     localStorage.removeItem('isLoggedIn');
+    setIsAuthenticated(false);
     navigate('/');
   };
 
-  const toggleSearch = () => {
-    setShowSearch(!showSearch);
-  };
-
-  const closeSearch = () => {
-    setShowSearch(false);
-    setSearchQuery('');
-  };
+  const toggleSearch = () => setShowSearch(!showSearch);
+  const closeSearch = () => setShowSearch(false);
 
   return (
     <>
@@ -46,16 +52,19 @@ const Header = () => {
       <Navbar expand='lg' className='navbar navhead d-none d-lg-flex'>
         <Container>
           <Navbar.Brand className='navhome text-white' as={Link} to='/'>ARMORY X</Navbar.Brand>
-          <Form className='d-flex navb'>
+          <Form className='d-flex navb' onSubmit={handleSearchSubmit}>
             {!isAuthPage && (
-              <Form.Control
-                type='search'
-                className='textarea me-2'
-                placeholder='Search'
-                aria-label='Search'
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
+              <>
+                <Form.Control
+                  type='search'
+                  className='textarea me-2'
+                  placeholder='Search'
+                  aria-label='Search'
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                />
+                <Button type='submit' variant='outline-light' className='me-2'>🔍</Button>
+              </>
             )}
             {!isAuthenticated ? (
               <>
@@ -65,9 +74,7 @@ const Header = () => {
             ) : (
               <>
                 <Button variant='outline-light' className='me-2' onClick={handleLogout}>Logout</Button>
-                <Link to='/addtocart'>
-                  <Button variant='outline-light' className='me-2'>Cart</Button>
-                </Link>
+                <Link to='/addtocart'><Button variant='outline-light' className='me-2'>Cart</Button></Link>
               </>
             )}
           </Form>
@@ -79,12 +86,8 @@ const Header = () => {
         <Container>
           <Navbar.Brand className='text-white' as={Link} to='/'>ARMORY X</Navbar.Brand>
           <div className='d-flex align-items-center'>
-            <Button variant='link' className='text-white' onClick={toggleSearch} style={{ textDecoration: 'none' }}>
-              🔍
-            </Button>
-            <Link to='/addtocart'>
-              <Button variant='link' className='text-white' style={{ textDecoration: 'none' }}>🛒</Button>
-            </Link>
+            <Button variant='link' className='text-white' onClick={toggleSearch} style={{ textDecoration: 'none' }}>🔍</Button>
+            <Link to='/addtocart'><Button variant='link' className='text-white' style={{ textDecoration: 'none' }}>🛒</Button></Link>
             <Button variant='link' className='text-white' onClick={() => setShowMenu(true)} style={{ textDecoration: 'none' }}>☰</Button>
           </div>
         </Container>
@@ -92,17 +95,18 @@ const Header = () => {
 
       {/* Search Bar for Mobile */}
       {showSearch && (
-        <div className="search-bar " style={{ backgroundColor: '#222', padding: '10px' }}>
-          <Form.Control
-            type='search'
-            className='textarea w-100'
-            placeholder='Search'
-            aria-label='Search'
-            value={searchQuery}
-            onChange={handleSearchChange}
-            onBlur={closeSearch} // Close search when clicking outside
-            style={{ backgroundColor: '#222', color: 'white' }} // Match the navbar background
-          />
+        <div className="search-bar" style={{ backgroundColor: '#222', padding: '10px' }}>
+          <Form onSubmit={handleSearchSubmit}>
+            <Form.Control
+              type='search'
+              className='textarea w-100'
+              placeholder='Search'
+              aria-label='Search'
+              value={searchQuery}
+              onChange={handleSearchChange}
+              style={{ backgroundColor: '#222', color: 'white' }}
+            />
+          </Form>
         </div>
       )}
 
@@ -140,9 +144,7 @@ const Header = () => {
 
       {!isAuthPage && (
         <Nav className='justify-content-center navbar navitem d-none d-lg-flex'>
-          <Nav.Item>
-            <Nav.Link as={Link} to='/' className={location.pathname === '/' ? 'active ' : ''}>Home</Nav.Link>
-          </Nav.Item>
+          <Nav.Item><Nav.Link as={Link} to='/' className={location.pathname === '/' ? 'active ' : ''}>Home</Nav.Link></Nav.Item>
           {categories.map((category) => (
             <Nav.Item key={category}>
               <Nav.Link as={Link} to={category} className={location.pathname === category ? 'active' : ''}>

@@ -259,7 +259,7 @@
     /* Responsive Styles */
     @media (max-width: 768px) {
       .product-image {
-        height: 180px; /* Resize image for tablets */
+        height: 250px; /* Resize image for tablets */
       }
       .card-title {
         font-size: 1.1rem; /* Adjust title font size for tablets */
@@ -269,7 +269,7 @@
       }
       .button-group {
         flex-direction: column;
-        gap: 10px; /* Stack buttons with spacing */
+        gap: 10px;
       }
       .button-group button {
         width: 100%; /* Full-width buttons on smaller screens */
@@ -278,9 +278,10 @@
 
     @media (max-width: 576px) {
       .product-image {
-        height: 20px; /* Resize image for mobile devices */
+        height: 250px; /* Resize image for mobile devices */
       }
       .quantity-container span {
+        font-weight: bold;
         font-size: 1rem; /* Adjust quantity font size for mobile */
       }
     }

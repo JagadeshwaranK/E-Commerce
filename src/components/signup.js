@@ -3,7 +3,7 @@ import { Form, Button, Container } from 'react-bootstrap';
 import {  useNavigate } from 'react-router-dom';
 import CloseButton from 'react-bootstrap/CloseButton';
 import '../App.css';
-import Header from './header';
+
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -50,7 +50,7 @@ const SignUp = () => {
 
   return (
     <>
-      <Header />
+     
       { showSignUp && (
       <div className="signup">
         <Container>
