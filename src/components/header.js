@@ -44,7 +44,7 @@ const Header = () => {
   };
 
   const toggleSearch = () => setShowSearch(!showSearch);
-  const closeSearch = () => setShowSearch(false);
+ /* const closeSearch = () => setShowSearch(false);*/
 
   return (
     <>
