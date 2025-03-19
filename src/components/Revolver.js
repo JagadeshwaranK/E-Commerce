@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import products from '../data/products';
 import Footer from './footer';
-import Header from './header';
 
 const Revolver = ({ addToCart }) => {
   const navigate = useNavigate();
@@ -56,7 +55,7 @@ const Revolver = ({ addToCart }) => {
 
   return (
     <>
-      <Header />
+    
 
       {searchQuery ? (
         <div className="container my-5">
@@ -67,7 +66,7 @@ const Revolver = ({ addToCart }) => {
               {searchResults.map((product) => (
                 <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={product.id}>
                   <div className="card shadow-sm">
-                    <img 
+                    <img
                       src={`${process.env.PUBLIC_URL}/images/${product.image}`}
                       className="card-img-top product-image"
                       alt={product.name}
@@ -107,7 +106,7 @@ const Revolver = ({ addToCart }) => {
 
                     <div className="d-flex justify-content-center align-items-center quantity-container">
                       <button className="btn btn-sm btn-outline-secondary me-2" onClick={() => decrement(product.id)}>-</button>
-                      <span className="mx-2 mt-3 fw-bold">{quantities[product.id]}</span>
+                      <span className="mx-3 fw-bold">{quantities[product.id]}</span>
                       <button className="btn btn-sm btn-outline-secondary ms-2" onClick={() => increment(product.id)}>+</button>
                     </div>
 
@@ -188,4 +187,3 @@ const Revolver = ({ addToCart }) => {
 };
 
 export default Revolver;
-

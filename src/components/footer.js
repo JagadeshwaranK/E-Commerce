@@ -50,14 +50,22 @@ const Footer = () => {
             </div>
 
             {/* Newsletter Subscription */}
-            <div className="col-lg-6 mb-3">
-              <h4 className="fw-bold text-uppercase">Stay Updated</h4>
-              <p className="text-muted">Get the latest trends, offers & safety tips straight to your inbox!</p>
-              <div className="d-flex justify-content-center">
-                <input type="email" className="form-control w-50" placeholder="Enter your email" />
-                <button className="btn btn-primary ms-2">Subscribe</button>
-              </div>
-            </div>
+            <div className="col-lg-6 mb-3 text-center text-lg-start">
+  <h4 className="fw-bold text-uppercase">Stay Updated</h4>
+  <p className="text-muted">
+    Get the latest trends, offers & safety tips straight to your inbox!
+  </p>
+  
+  <div className="d-flex flex-column flex-md-row justify-content-center justify-content-lg-start align-items-center">
+    <input
+      type="email"
+      className="form-control w-75 w-md-50 mb-2 mb-md-0"
+      placeholder="Enter your email"
+    />
+    <button className="btn btn-primary ms-md-2">Subscribe</button>
+  </div>
+</div>
+
           </div>
         </div>
       </footer>

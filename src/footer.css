@@ -56,4 +56,13 @@
     color: #f8d210 !important;
   }
   
+  @media (max-width: 768px) {
+    .form-control {
+      width: 90% !important; /* Make input field take most of the width on mobile */
+    }
+  
+    .btn {
+      width: 90%; /* Make button full-width on mobile */
+    }
+  }
   
