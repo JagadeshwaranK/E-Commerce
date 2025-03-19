@@ -17,7 +17,6 @@ const SignUp = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-
   };
 
   const handleSubmit = (e) => {
@@ -41,32 +40,6 @@ const SignUp = () => {
     setMessage('Account created successfully!');
     setTimeout(() => navigate('/login'), 1500); 
   };
-
-=======
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const existingEmail = localStorage.getItem('email');
-    if (formData.email === existingEmail) {
-      setMessage('Account already exists with this email ID.');
-      return;
-    }
-
-    if (formData.password !== formData.confirmPassword) {
-      setMessage('Passwords do not match.');
-      return;
-    }
-
-// Saved mail & pass
-    localStorage.setItem('email', formData.email);
-    localStorage.setItem('password', formData.password);
-
-    setMessage('Account created successfully!');
-    setTimeout(() => navigate('/login'), 1500); 
-  };
-
 
   const [showSignUp, setShowSignUp] = useState(true);
     
@@ -76,10 +49,15 @@ const SignUp = () => {
       };
 
   return (
-    <>
-
-      <Header />
-
+    <div style={{
+      backgroundImage: `url("${process.env.PUBLIC_URL}/loginbg2.jpg")`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      height: "100vh",
+      width: "100vw",
+    }}>
+    
+     
       { showSignUp && (
       <div className="signup">
         <Container>
@@ -131,7 +109,7 @@ const SignUp = () => {
         </Container>
       </div>
       )}
-    </>
+    </div>
   );
 };
 
