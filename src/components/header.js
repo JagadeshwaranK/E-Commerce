@@ -23,10 +23,12 @@ const Header = () => {
 
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Extracted variable
 
-  useEffect(() => {
-    setIsAuthenticated(isLoggedIn); // Use extracted variable
-  }, [isLoggedIn]); // Clean dependency array
-  
+const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+useEffect(() => {
+  setIsAuthenticated(isLoggedIn); 
+}, [isLoggedIn]); 
+
   
 
     const handleLogout = () => {
