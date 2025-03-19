@@ -21,9 +21,12 @@ const Header = () => {
     setSearchQuery(queryParams.search || '');
   }, [location.search]);
 
-  useEffect(() => {
-    setIsAuthenticated(localStorage.getItem('isLoggedIn') === 'true');
-  }, [localStorage.getItem('isLoggedIn')]);
+const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+useEffect(() => {
+  setIsAuthenticated(isLoggedIn); 
+}, [isLoggedIn]); 
+
   
 
     const handleLogout = () => {
