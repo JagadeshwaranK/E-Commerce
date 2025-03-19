@@ -48,6 +48,18 @@ const SignUp = () => {
         navigate('/');
       };
 
+    useEffect(() => {
+    if (setShowSignUp) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [setShowSignUp]);
+
   return (
     <div style={{
       backgroundImage: `url("${process.env.PUBLIC_URL}/loginbg2.jpg")`,
