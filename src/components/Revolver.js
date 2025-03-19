@@ -3,6 +3,10 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import products from '../data/products';
 import Footer from './footer';
 
+=======
+import Header from './header';
+
+
 const Revolver = ({ addToCart }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -55,7 +59,11 @@ const Revolver = ({ addToCart }) => {
 
   return (
     <>
+
     
+=======
+      <Header />
+
 
       {searchQuery ? (
         <div className="container my-5">
@@ -66,7 +74,11 @@ const Revolver = ({ addToCart }) => {
               {searchResults.map((product) => (
                 <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={product.id}>
                   <div className="card shadow-sm">
+
                     <img
+=======
+                    <img 
+
                       src={`${process.env.PUBLIC_URL}/images/${product.image}`}
                       className="card-img-top product-image"
                       alt={product.name}
@@ -106,7 +118,11 @@ const Revolver = ({ addToCart }) => {
 
                     <div className="d-flex justify-content-center align-items-center quantity-container">
                       <button className="btn btn-sm btn-outline-secondary me-2" onClick={() => decrement(product.id)}>-</button>
+
                       <span className="mx-3 fw-bold">{quantities[product.id]}</span>
+=======
+                      <span className="mx-2 mt-3 fw-bold">{quantities[product.id]}</span>
+
                       <button className="btn btn-sm btn-outline-secondary ms-2" onClick={() => increment(product.id)}>+</button>
                     </div>
 
@@ -127,8 +143,67 @@ const Revolver = ({ addToCart }) => {
       )}
 
       <Footer />
+
+=======
+
+      {/* Responsive CSS */}
+      <style>
+        {`
+          .custom-card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+          }
+          .custom-card:hover {
+            transform: scale(1.03);
+          }
+          .product-image {
+            height: 200px;
+            object-fit: cover;
+          }
+          .quantity-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .button-group button {
+            width: 100%;
+          }
+          
+          /* Responsive Styles */
+          @media (max-width: 768px) {
+            .product-image {
+              height: 180px;
+            }
+            .card-title {
+              font-size: 1.1rem;
+            }
+            .card-text {
+              font-size: 0.9rem;
+            }
+            .button-group {
+              flex-direction: column;
+              gap: 10px;
+            }
+            .button-group button {
+              width: 100%;
+            }
+          }
+
+          @media (max-width: 576px) {
+            .product-image {
+              height: 160px;
+            }
+            .quantity-container span {
+              font-size: 1rem;
+            }
+          }
+        `}
+      </style>
+
     </>
   );
 };
 
 export default Revolver;
+

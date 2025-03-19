@@ -12,6 +12,7 @@
 
 .navhome:hover {
   color: #ccc;
+
 }
 
 .navb {
@@ -96,4 +97,52 @@ button {
   left: 0;
   right: 0;
   z-index: 999;
+
+}
+
+.navb {
+  flex-grow: 1; /* Allows search bar to take up space */
+  max-width: 500px; /* Adjust max width */
+}
+.navitem .active {
+  font-weight: bold;
+  color: #ffae00; /* Change to your desired active color */
+}
+
+.textarea {
+  height: 40px;
+  margin-top: 16px;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.navitem {
+  padding: 10px 0;
+}
+
+.navitem .nav-link {
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.1rem; /* Slightly larger font for navigation */
+  font-weight: 500;
+}
+
+.navitem .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.hr {
+  margin: 0;
+  border: 0;
+  height: 2px;
+  background-color: white;
+}
+
+button {
+  margin-left: 10px;
+  font-size: 1rem;
+  padding: 8px 16px;
+
 }

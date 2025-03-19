@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
+import { BrowserRouter , Route, Routes } from 'react-router-dom'; 
 import Home from './components/home';
 import Rifle from './components/Rifle';
 import Handgun from './components/Handgun';
@@ -54,6 +55,24 @@ const App = () => {
         <Route path="/AddToCart" element={<AddToCart cartItems={cartItems} removeFromCart={removeFromCart} />} />
       </Routes>
     </Router>
+=======
+    <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home key={window.location.search} />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/Handgun" element={<Handgun addToCart={addToCart} />} />
+          <Route path="/Rifle" element={<Rifle addToCart={addToCart} />} />
+          <Route path="/Shotgun" element={<Shotgun addToCart={addToCart} />} />
+          <Route path="/Specialty" element={<Specialty addToCart={addToCart} />} />
+          <Route path="/Revolver" element={<Revolver addToCart={addToCart} />} />
+          <Route path="/Tactical" element={<Tactical addToCart={addToCart} />} />
+          <Route path="/Training" element={<Training addToCart={addToCart} />} />
+          <Route path="/Checkout" element={<Checkout cartItems={cartItems} />} />
+          <Route path="/AddToCart" element={<AddToCart cartItems={cartItems} removeFromCart={removeFromCart} />} />
+        </Routes>
+        </BrowserRouter>    
+
   );
 };
 

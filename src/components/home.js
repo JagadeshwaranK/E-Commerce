@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+
+import Header from "./header";
+
 import "../home.css";
 import Footer from "./footer";
 import products from "../data/products";
@@ -39,7 +42,9 @@ const Home = () => {
 
   return (
     <>
-      
+
+      <Header />
+
 
       {searchQuery ? (
         // Show search results with only header and footer
