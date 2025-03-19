@@ -39,15 +39,26 @@ const Footer = () => {
 
             {/* Social Media Links */}
             <div className="col-lg-2 mb-3">
-              <h4 className="text-uppercase fw-bold">Follow Us</h4>
-              <ul className="list-unstyled mt-3">
-                {["Facebook", "Twitter", "Instagram"].map((platform, index) => (
-                  <li key={index}>
-                    <a href="javascript:void(0);" className="text-light text-decoration-none hover-effect">{platform}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+  <h4 className="text-uppercase fw-bold">Follow Us</h4>
+  <ul className="list-unstyled mt-3">
+    {[
+      { name: "Facebook", url: "https://www.facebook.com/search/top/?q=Dhanesh%20Perumal" },
+      { name: "Instagram", url: "https://www.instagram.com/always_dhanesh_/" }
+    ].map((platform, index) => (
+      <li key={index}>
+        <a 
+          href={platform.url} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-light text-decoration-none hover-effect"
+        >
+          {platform.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
 
             {/* Newsletter Subscription */}
             <div className="col-lg-6 mb-3 text-center text-lg-start">

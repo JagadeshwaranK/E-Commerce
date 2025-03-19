@@ -5,20 +5,20 @@ import products from "../data/products";
 import { Link, useLocation } from "react-router-dom";
 
 const Home = () => {
-  const [counter , setCounter] = useState(0);
-
-  const location = useLocation(); 
+  const [counter, setCounter] = useState(0);
+  const [randomProducts, setRandomProducts] = useState([]);
+  const location = useLocation();
   const [searchResults, setSearchResults] = useState([]);
   const searchQuery = new URLSearchParams(location.search).get("search");
 
   useEffect(() => {
     if (searchQuery) {
-      const filteredProducts = products.filter(product =>
+      const filteredProducts = products.filter((product) =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setSearchResults(filteredProducts);
     } else {
-      setSearchResults([]); 
+      setSearchResults([]);
     }
   }, [searchQuery]);
 
@@ -26,7 +26,6 @@ const Home = () => {
     const interval = setInterval(() => {
       setCounter((prev) => (prev >= 4 ? 1 : prev + 1));
     }, 3000);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -37,19 +36,26 @@ const Home = () => {
     }
   }, [counter]);
 
+  useEffect(() => {
+    if (products.length > 0) {
+      const shuffled = [...products].sort(() => 0.5 - Math.random()); // Shuffle products
+      setRandomProducts(shuffled.slice(0, 4)); // Pick 4 random products
+    }
+  }, [products]);
+
   return (
     <>
-      
-
       {searchQuery ? (
-        // Show search results with only header and footer
         <div className="products">
           <h2>Search Results for "{searchQuery}"</h2>
           <hr />
           {searchResults.length > 0 ? (
             searchResults.map((product) => (
               <div key={product.id} className="product">
-                <img src={`${process.env.PUBLIC_URL}/images/${product.image}`} alt={product.name} />
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/${product.image}`}
+                  alt={product.name}
+                />
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
                 <p>Price: ${product.price.toFixed(2)}</p>
@@ -63,19 +69,26 @@ const Home = () => {
           )}
         </div>
       ) : (
-        
         <>
-          <div className='slider'>
+          <div className="slider">
             <div className="slides">
-              <input type="radio" name='radio-btn' id="radio1" />
-              <input type="radio" name='radio-btn' id="radio2" />
-              <input type="radio" name='radio-btn' id="radio3" />
-              <input type="radio" name='radio-btn' id="radio4" />
+              <input type="radio" name="radio-btn" id="radio1" />
+              <input type="radio" name="radio-btn" id="radio2" />
+              <input type="radio" name="radio-btn" id="radio3" />
+              <input type="radio" name="radio-btn" id="radio4" />
 
-              <div className="slide first"><img src="/112.jpeg" alt="1" /></div>
-              <div className="slide second"><img src="/113.jpeg" alt="2" /></div>
-              <div className="slide third"><img src="/114.jpeg" alt="3" /></div>
-              <div className="slide four"><img src="/115.jpeg" alt="4" /></div>
+              <div className="slide first">
+                <img src="/112.jpeg" alt="1" />
+              </div>
+              <div className="slide second">
+                <img src="/113.jpeg" alt="2" />
+              </div>
+              <div className="slide third">
+                <img src="/114.jpeg" alt="3" />
+              </div>
+              <div className="slide four">
+                <img src="/115.jpeg" alt="4" />
+              </div>
 
               <div className="navigation-auto">
                 <div className="auto-btn1"></div>
@@ -92,7 +105,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className='mt-5 logo'>
+          <div className="mt-5 logo">
             <h2>Our Collections</h2>
             <div className="marquee mt-4 mb-4">
               <div className="marquee-content">
@@ -117,21 +130,26 @@ const Home = () => {
             <h2>Our Featured Products</h2>
             <hr />
           </div>
-          
-          <div className='products'>
-            {products.filter(item => item.category === 'special').map((product) => (
+
+          <div className="products">
+            {randomProducts.map((product) => (
               <div key={product.id} className="product">
-                <img src={`${process.env.PUBLIC_URL}/images/${product.image}`} alt={product.name} />
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/${product.image}`}
+                  alt={product.name}
+                />
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
                 <p>Price: ${product.price.toFixed(2)}</p>
-                <Link to={'/shotgun'}> <button>Show More</button></Link>
+                <Link to={`/${product.category}`}>
+                  <button>Show More</button>
+                </Link>
               </div>
             ))}
           </div>
 
           {/* Offer Section */}
-          <div 
+          <div
             className="image-container"
             style={{
               backgroundImage: `url(${process.env.PUBLIC_URL}/116.jpeg)`,
@@ -146,10 +164,6 @@ const Home = () => {
               <button>SHOP NOW</button>
             </div>
           </div>
-
-          {/* hover  */}
-
-          
         </>
       )}
 
