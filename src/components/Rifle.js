@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import products from '../data/products';
 import Footer from './footer';
+
 import Header from './header';
+
 
 const Rifle = ({ addToCart }) => {
   const navigate = useNavigate();
@@ -56,7 +58,9 @@ const Rifle = ({ addToCart }) => {
 
   return (
     <>
+
       <Header />
+
 
       {searchQuery ? (
         <div className="container my-5">
@@ -183,6 +187,7 @@ const Rifle = ({ addToCart }) => {
           }
         `}
       </style>
+
     </>
   );
 };

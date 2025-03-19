@@ -2,6 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import products from '../data/products';
 import Footer from './footer';
+
+
+const HandGun = ({ addToCart }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handgun = products.filter(item => item.category === 'handgun');
+
+  const [searchResults, setSearchResults] = useState([]);
+  const searchQuery = new URLSearchParams(location.search).get("search");
+
+  useEffect(() => {
+    if (searchQuery) {
+      const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setSearchResults(filteredProducts);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchQuery]);
+
+=======
 import Header from './header';
 
 const HandGun = ({ addToCart }) => {
@@ -23,6 +46,7 @@ const HandGun = ({ addToCart }) => {
       setSearchResults([]);
     }
   }, [searchQuery]);
+
 
   const [quantities, setQuantities] = useState(
     handgun.reduce((acc, product) => {
@@ -56,7 +80,11 @@ const HandGun = ({ addToCart }) => {
 
   return (
     <>
+
+     
+=======
       <Header />
+
 
       {searchQuery ? (
         <div className="container my-5">
@@ -91,7 +119,11 @@ const HandGun = ({ addToCart }) => {
       ) : (
         <div className="container my-5">
           <h1 className="text-center fs-3 mb-4">HandGun Collections</h1>
+
+          <div className="row gy-4">
+=======
           <div className="row">
+
             {handgun.map((product) => (
               <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={product.id}>
                 <div className="card shadow-sm custom-card">
@@ -128,6 +160,8 @@ const HandGun = ({ addToCart }) => {
       )}
 
       <Footer />
+
+=======
 
       {/* Responsive CSS */}
       <style>
@@ -183,6 +217,7 @@ const HandGun = ({ addToCart }) => {
           }
         `}
       </style>
+
     </>
   );
 };

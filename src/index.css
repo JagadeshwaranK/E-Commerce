@@ -12,6 +12,7 @@
 
 .navhome:hover {
   color: #ccc;
+
 }
 
 .navb {
@@ -58,4 +59,90 @@ button {
   margin-left: 10px;
   font-size: 1rem;
   padding: 8px 16px;
+}
+
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding-top: 60px;
+  z-index: 1050;
+}
+.category-bar a {
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* Remove underline from icons */
+.icon-button {
+  border: none;
+  background: none;
+  color: white;
+  font-size: 20px;
+  padding: 5px;
+  text-decoration: none; /* Removes underline */
+}
+
+/* Search bar positioning for mobile */
+.mobile-search-container {
+  width: 100%;
+  padding: 10px;
+  background: white;
+  position: absolute;
+  top: 56px; /* Adjust based on navbar height */
+  left: 0;
+  right: 0;
+  z-index: 999;
+
+}
+
+.navb {
+  flex-grow: 1; /* Allows search bar to take up space */
+  max-width: 500px; /* Adjust max width */
+}
+.navitem .active {
+  font-weight: bold;
+  color: #ffae00; /* Change to your desired active color */
+}
+
+.textarea {
+  height: 40px;
+  margin-top: 16px;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.navitem {
+  padding: 10px 0;
+}
+
+.navitem .nav-link {
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.1rem; /* Slightly larger font for navigation */
+  font-weight: 500;
+}
+
+.navitem .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.hr {
+  margin: 0;
+  border: 0;
+  height: 2px;
+  background-color: white;
+}
+
+button {
+  margin-left: 10px;
+  font-size: 1rem;
+  padding: 8px 16px;
+
 }

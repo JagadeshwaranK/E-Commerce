@@ -43,14 +43,43 @@ const Footer = () => {
               <ul className="list-unstyled mt-3">
                 {["Facebook", "Twitter", "Instagram"].map((platform, index) => (
                   <li key={index}>
+
+                    <button
+                      onClick={() => console.log(`Redirecting to ${platform}`)} 
+                      className="text-light text-decoration-none hover-effect"
+                      style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+                    >
+                      {platform}
+                    </button>
+                  </li>
+=======
                     <button onClick={() => console.log(`${platform} clicked`)} className="text-light text-decoration-none hover-effect">{platform}</button>
                   </li>
+
 
                 ))}
               </ul>
             </div>
 
             {/* Newsletter Subscription */}
+
+            <div className="col-lg-6 mb-3 text-center text-lg-start">
+  <h4 className="fw-bold text-uppercase">Stay Updated</h4>
+  <p className="text-muted">
+    Get the latest trends, offers & safety tips straight to your inbox!
+  </p>
+  
+  <div className="d-flex flex-column flex-md-row justify-content-center justify-content-lg-start align-items-center">
+    <input
+      type="email"
+      className="form-control w-50 w-md-50 mb-2 mb-md-0"
+      placeholder="Enter your email"
+    />
+    <button className="btn btn-primary ms-md-2">Subscribe</button>
+  </div>
+</div>
+
+=======
             <div className="col-lg-6 mb-3">
               <h4 className="fw-bold text-uppercase">Stay Updated</h4>
               <p className="text-muted">Get the latest trends, offers & safety tips straight to your inbox!</p>
@@ -59,6 +88,7 @@ const Footer = () => {
                 <button className="btn btn-primary ms-2">Subscribe</button>
               </div>
             </div>
+
           </div>
         </div>
       </footer>

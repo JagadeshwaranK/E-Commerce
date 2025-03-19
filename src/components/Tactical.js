@@ -2,11 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import products from '../data/products';
 import Footer from './footer';
+
 import Header from './header';
+
 
 const Tactical = ({ addToCart }) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+
+  const tactical = products.filter(item => item.category === 'tactical');
+
+  const [searchResults, setSearchResults] = useState([]);
+  const searchQuery = new URLSearchParams(location.search).get("search");
+
+  useEffect(() => {
+    if (searchQuery) {
+      const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setSearchResults(filteredProducts);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchQuery]);
+
 
   const tactical = products.filter(item => item.category === 'tactical');
 
@@ -56,7 +76,9 @@ const Tactical = ({ addToCart }) => {
 
   return (
     <>
+
       <Header />
+
 
       {searchQuery ? (
         <div className="container my-5">
@@ -129,6 +151,7 @@ const Tactical = ({ addToCart }) => {
 
       <Footer />
 
+
       {/* Responsive CSS */}
       <style>
         {`
@@ -183,6 +206,7 @@ const Tactical = ({ addToCart }) => {
           }
         `}
       </style>
+
     </>
   );
 };

@@ -70,6 +70,15 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: 20px;
+  <<<<<<< child-branch
+  }
+  @media (max-width: 600px) {
+    .login {
+      width: 95%;
+      padding: 15px;
+    }
+  =======
+  >>>>>>> main
 }
 
 .SubmitButton {
@@ -82,10 +91,32 @@
   color: white;
   font-weight: bold;
   transition: background 0.3s ease;
-}
+  <<<<<<< child-branch
+  }
 
-.SubmitButton:hover {
-  background-color: #0056b3;
+  .SubmitButton:hover {
+    background-color: #0056b3;
+  =======
+  }
+
+  .SubmitButton:hover {
+    background-color: #0056b3;
+  }
+
+  .dont {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .dont a {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .dont a:hover {
+    text-decoration: underline;
+  >>>>>>> main
 }
 
 .dont {
@@ -103,40 +134,6 @@
   text-decoration: underline;
 }
 
-
-/* App.css */
-/* .card {
-  transition: transform 0.3s, box-shadow 0.3s;
-  border: none;
-  border-radius: 15px;
-  overflow: hidden;
-} */
-/* 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-} */
-
-/* .card-img-top {
-  height: 300px;
-  object-fit: cover;
-  border-bottom: 1px solid rgba(0,0,0,0.125);
-}
-
-.navbar {
-  padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-} */
-/* 
-.nav-link {
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.nav-link:hover {
-  color: #007bff !important;
-} */
-
 .navbar {
   padding: 1rem 0;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -144,6 +141,7 @@
   font-weight: bold;
 } 
 
+/*Button*/
 .button-group {
   display: flex;
   align-items: center; /* Vertically centers the buttons */
@@ -166,33 +164,12 @@
   border: none;
   padding: 0.5rem 1.5rem;
   transition: background-color 0.3s;
-  margin-left: -2px;
+  margin-left: 2.5px
 }
 
 .btn-primary:hover {
   background-color: #0984e3;
 } 
-
-.custom-card {
-  /* font-style: oblique; */
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  transition: transform 0.2s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin-top: 50px;
-  width: 400px;
-  justify-content: space-between;
-  position: relative;
-  flex: 1 1 30%;
-  margin: 30px; /* Adjust the margin values as needed */
-  margin-bottom: -1px; /* New property to decrease bottom size */
-}
-
-
-.custom-card:hover {
-  transform: scale(1.05); 
-}
 
 .card-img-top {
   height: 280px; 
@@ -209,10 +186,17 @@
 }
 
 .button-group {
-  display: flex; 
-  justify-content: space-between; 
+  display: flex;
+  justify-content: space-between;
   margin-top: 10px;
-  padding: 0.5% 0% 0% 1%;
+  gap: 5px;
+}
+
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column; /* Stack buttons on smaller screens */
+    gap: 10px;
+  }
 }
 
 .btn-secondary{
@@ -250,3 +234,82 @@
 .text-success {
   font-size: 1.2em;
 }
+
+.product-image {
+  height: 280px;
+  object-fit: cover; 
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .product-image {
+    height: 180px; /* Resize image for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .product-image {
+    height: 160px; /* Further resize for mobile */
+  }
+}
+
+    .custom-card {
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.2s ease-in-out;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .custom-card:hover {
+      transform: scale(1.03);
+    }
+
+    .product-image {
+      height: 240px; /* Default height for larger screens */
+      object-fit: cover;
+      border-top-left-radius: 10px; 
+      border-top-right-radius: 10px;
+    }
+
+    .quantity-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .button-group button {
+      width: 100%;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .product-image {
+        height: 250px; /* Resize image for tablets */
+      }
+      .card-title {
+        font-size: 1.1rem; /* Adjust title font size for tablets */
+      }
+      .card-text {
+        font-size: 0.9rem; /* Adjust text font size for tablets */
+      }
+      .button-group {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .button-group button {
+        width: 100%; /* Full-width buttons on smaller screens */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .product-image {
+        height: 250px; /* Resize image for mobile devices */
+      }
+      .quantity-container span {
+        font-weight: bold;
+        font-size: 1rem; /* Adjust quantity font size for mobile */
+      }
+    }
+  
+
+

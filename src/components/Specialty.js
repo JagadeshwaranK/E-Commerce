@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import products from '../data/products';
 import Footer from './footer';
+
 import Header from './header';
+
 
 const Specialty = ({ addToCart }) => {
   const navigate = useNavigate();
@@ -56,7 +58,9 @@ const Specialty = ({ addToCart }) => {
 
   return (
     <>
+
       <Header />
+
 
       {searchQuery ? (
         <div className="container my-5">
@@ -129,6 +133,7 @@ const Specialty = ({ addToCart }) => {
 
       <Footer />
 
+
       {/* Responsive CSS */}
       <style>
         {`
@@ -183,6 +188,7 @@ const Specialty = ({ addToCart }) => {
           }
         `}
       </style>
+
     </>
   );
 };

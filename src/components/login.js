@@ -3,7 +3,6 @@ import { Form, Button, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import CloseButton from 'react-bootstrap/CloseButton';
 import '../App.css';
-import Header from './header';
 
 const LogIn = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -39,7 +38,7 @@ const LogIn = () => {
 
   return (
     <>
-      <Header />
+     
       {showLogin && (
         <div className='login' >
           <Container>
