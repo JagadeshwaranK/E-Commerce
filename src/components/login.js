@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import { Form, Button, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import CloseButton from 'react-bootstrap/CloseButton';
+
 import '../App.css';
 
 const LogIn = () => {
@@ -36,8 +37,23 @@ const LogIn = () => {
     setshowLogin(false);
   }
 
+  useEffect(() => {
+    if (showLogin) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "auto"; // Enable scrolling when login is closed
+    }
+}, [showLogin]);
+
   return (
-    <>
+    <div style={{
+      backgroundImage: `url("${process.env.PUBLIC_URL}/loginbg2.jpg")`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      height: "100vh",
+      width: "100vw",
+    }}>
+    
      
       {showLogin && (
         <div className='login' >
@@ -98,7 +114,7 @@ const LogIn = () => {
           </Form>
         </Container>
       </div>
-    </>
+    </div>
   );
 };
 
