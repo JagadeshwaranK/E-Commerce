@@ -21,7 +21,6 @@ const Header = () => {
     setSearchQuery(queryParams.search || '');
   }, [location.search]);
 
-  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Extracted variable
 
 const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
