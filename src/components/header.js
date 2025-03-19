@@ -21,9 +21,12 @@ const Header = () => {
     setSearchQuery(queryParams.search || '');
   }, [location.search]);
 
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'; // Extracted variable
+
   useEffect(() => {
-    setIsAuthenticated(localStorage.getItem('isLoggedIn') === 'true');
-  }, [localStorage.getItem('isLoggedIn')]);
+    setIsAuthenticated(isLoggedIn); // Use extracted variable
+  }, [isLoggedIn]); // Clean dependency array
+  
   
 
     const handleLogout = () => {
@@ -88,6 +91,7 @@ const Header = () => {
           <Navbar.Brand className='text-white' as={Link} to='/'>ARMORY X</Navbar.Brand>
           <div className='d-flex align-items-center'>
             <Button variant='link' className='text-white' onClick={toggleSearch} style={{ textDecoration: 'none' }}>🔍</Button>
+            
             <Link to='/addtocart'><Button variant='link' className='text-white' style={{ textDecoration: 'none' }}>🛒</Button></Link>
             <Button variant='link' className='text-white' onClick={() => setShowMenu(true)} style={{ textDecoration: 'none' }}>☰</Button>
           </div>

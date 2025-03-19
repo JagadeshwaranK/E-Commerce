@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import { Form, Button, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import CloseButton from 'react-bootstrap/CloseButton';
@@ -36,6 +36,14 @@ const LogIn = () => {
   const handleClose = () => {
     setshowLogin(false);
   }
+
+  useEffect(() => {
+    if (showLogin) {
+        document.body.style.overflow = "hidden";
+    } else {
+        document.body.style.overflow = "auto"; // Enable scrolling when login is closed
+    }
+}, [showLogin]);
 
   return (
     <div style={{

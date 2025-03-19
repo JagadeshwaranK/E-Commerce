@@ -348,12 +348,12 @@ import { useLocation,useNavigate } from 'react-router-dom';
               <ListGroup className="list-group-flush">
                 {cartItems.map((item) => (
                   <ListGroup.Item key={item.id}>
-                    {item.name} x {item.quantity}: ₹{(item.price * item.quantity).toFixed(2)}
+                    {item.name} x {item.quantity}: ${(item.price * item.quantity).toFixed(2)}
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>Delivery Charges: FREE</ListGroup.Item>
-                <ListGroup.Item>Packaging Charge: ₹5.00</ListGroup.Item>
-                <ListGroup.Item>Protect Promise Fee: ₹3.00</ListGroup.Item>
+                <ListGroup.Item>Packaging Charge: $5.00</ListGroup.Item>
+                <ListGroup.Item>Protect Promise Fee: $3.00</ListGroup.Item>
                 <ListGroup.Item>
                   Total Payable: ${(cartItems.reduce((total, item) => total + item.price * item.quantity, 0) + 8.00) }
                 </ListGroup.Item>
