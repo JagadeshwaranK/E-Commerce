@@ -22,9 +22,9 @@ const Header = () => {
   }, [location.search]);
 
   useEffect(() => {
-    // Check authentication on each render
     setIsAuthenticated(localStorage.getItem('isLoggedIn') === 'true');
   }, [localStorage.getItem('isLoggedIn')]);
+  
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -44,7 +44,7 @@ const Header = () => {
   };
 
   const toggleSearch = () => setShowSearch(!showSearch);
-  const closeSearch = () => setShowSearch(false);
+
 
   return (
     <>

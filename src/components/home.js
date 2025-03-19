@@ -41,7 +41,7 @@ const Home = () => {
       const shuffled = [...products].sort(() => 0.5 - Math.random()); // Shuffle products
       setRandomProducts(shuffled.slice(0, 4)); // Pick 4 random products
     }
-  }, [products]);
+  }, []);
 
   return (
     <>
