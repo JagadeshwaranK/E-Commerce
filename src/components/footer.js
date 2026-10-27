@@ -1,99 +1,31 @@
 import React from 'react';
 import '../footer.css';
 
-const Footer = () => {
-  return (
-    <>
-      {/* Features Section */}
-      <div className="container mt-5">
-        <div className="overall d-flex justify-content-center flex-wrap text-center">
-          {[
-            { img: "/world.png", title: "Worldwide Shipping", desc: "Fast & reliable global shipping with secure handling." },
-            { img: "/bestss.jpg", title: "Best Quality", desc: "Top-tier firearms from trusted manufacturers." },
-            { img: "offer.png", title: "Exclusive Deals", desc: "Unlock special discounts on guns, ammo & accessories." },
-            { img: "/secure.jpg", title: "Secure Payment", desc: "Safe transactions with advanced encryption." }
-          ].map((item, index) => (
-            <div className="overallhead mx-3" key={index}>
-              <img src={item.img} className="feature-img mb-2" alt={item.title} />
-              <h4 className="fw-bold text-uppercase">{item.title}</h4>
-              <p className="text-muted">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Sale Banner */}
-      <div className="sale-banner text-center py-3 text-white mt-5">
-        <h2 className="fw-bold">🔥 SALE UP TO 70% OFF ON ALL GUNS & AMMO! 🔥</h2>
-      </div>
-
-      {/* Footer */}
-      <footer className="footer mt-auto py-4 bg-dark text-light">
-        <div className="container">
-          <div className="row text-center align-items-center">
-            {/* Branding Section */}
-            <div className="col-lg-4 mb-3">
-              <h2 className="fw-bold">AMMONATION</h2>
-              <p className="mt-4">Your trusted source for premium firearms & accessories.</p>
-            </div>
-
-            {/* Social Media Links */}
-            <div className="col-lg-2 mb-3">
-              <h4 className="text-uppercase fw-bold">Follow Us</h4>
-              <ul className="list-unstyled mt-3">
-                {["Facebook", "Twitter", "Instagram"].map((platform, index) => (
-                  <li key={index}>
-
-                    <button
-                      onClick={() => console.log(`Redirecting to ${platform}`)} 
-                      className="text-light text-decoration-none hover-effect"
-                      style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
-                    >
-                      {platform}
-                    </button>
-                  </li>
-=======
-                    <button onClick={() => console.log(`${platform} clicked`)} className="text-light text-decoration-none hover-effect">{platform}</button>
-                  </li>
-
-
-                ))}
-              </ul>
-            </div>
-
-            {/* Newsletter Subscription */}
-
-            <div className="col-lg-6 mb-3 text-center text-lg-start">
-  <h4 className="fw-bold text-uppercase">Stay Updated</h4>
-  <p className="text-muted">
-    Get the latest trends, offers & safety tips straight to your inbox!
-  </p>
-  
-  <div className="d-flex flex-column flex-md-row justify-content-center justify-content-lg-start align-items-center">
-    <input
-      type="email"
-      className="form-control w-50 w-md-50 mb-2 mb-md-0"
-      placeholder="Enter your email"
-    />
-    <button className="btn btn-primary ms-md-2">Subscribe</button>
-  </div>
-</div>
-
-=======
-            <div className="col-lg-6 mb-3">
-              <h4 className="fw-bold text-uppercase">Stay Updated</h4>
-              <p className="text-muted">Get the latest trends, offers & safety tips straight to your inbox!</p>
-              <div className="d-flex justify-content-center">
-                <input type="email" className="form-control w-50" placeholder="Enter your email" />
-                <button className="btn btn-primary ms-2">Subscribe</button>
-              </div>
-            </div>
-
+const Footer = () => (
+  <>
+    <section className="container mt-5" aria-label="Store features">
+      <div className="overall d-flex justify-content-center flex-wrap text-center">
+        {[
+          { img: '/world.png', title: 'Shipping', desc: 'Shipping information for your order.' },
+          { img: '/bestss.jpg', title: 'Product quality', desc: 'Browse the locally defined product catalog.' },
+          { img: '/offer.png', title: 'Offers', desc: 'See current offers in the storefront.' },
+          { img: '/secure.jpg', title: 'Checkout demo', desc: 'Checkout is a visual prototype only.' },
+        ].map((item) => (
+          <div className="overallhead mx-3" key={item.title}>
+            <img src={item.img} className="feature-img mb-2" alt="" />
+            <h2 className="h5 fw-bold text-uppercase">{item.title}</h2>
+            <p className="text-muted">{item.desc}</p>
           </div>
-        </div>
-      </footer>
-    </>
-  );
-};
+        ))}
+      </div>
+    </section>
+    <footer className="footer mt-auto py-4 bg-dark text-light">
+      <div className="container text-center">
+        <h2 className="h4 fw-bold">AMMONATION</h2>
+        <p className="mb-0">A client-side storefront prototype.</p>
+      </div>
+    </footer>
+  </>
+);
 
 export default Footer;

@@ -1,399 +1,209 @@
 import React, { useState } from 'react';
-import { Card, Form, Button, Container, Row, Col, ListGroup, Modal } from 'react-bootstrap';
-import { useLocation,useNavigate } from 'react-router-dom';
+import { Button, Card, Container, Form, Modal } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-
-  const Checkout = () => {
+const Checkout = ({ cartItems: appCartItems, setCartItems }) => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const [formData, setFormData] = useState({
-    name: '', email: '', address: '', city: '', state: '', zip: '', 
-    paymentMethod: '', cardNumber: '', cardExpiry: '', cardCVC: '', upiId: '',
-  });
-
-  const [currentStep, setCurrentStep] = useState(1);
-  const [isShippingComplete, setIsShippingComplete] = useState(false);
-  const [isSummaryComplete, setIsSummaryComplete] = useState(false);
-  const [isPaymentComplete] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-
-  // const [cartItems, setCartItems] = useState(location.state?.product ? [location.state.product] : []);
-  //  const [cartItems, setCartItems] = useState(location.state?.cartItems || []);
-
-
-   const [cartItems, setCartItems] = useState(
-    location.state?.cartItems || (location.state?.product ? [location.state.product] : [])
+  const [cartItems, setLocalCartItems] = useState(
+    () => location.state?.cartItems || appCartItems
   );
-  
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const [step, setStep] = useState(1);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [shipping, setShipping] = useState({
+    name: '',
+    email: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: '',
+  });
+  const total = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
-  const handleQuantityChange = (id, increment) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(item.quantity + increment, 1) } : item
+  const updateQuantity = (id, change) => {
+    setLocalCartItems((currentItems) =>
+      currentItems.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(item.quantity + change, 1) }
+          : item
       )
     );
   };
 
-  const handleRemoveItem = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  const removeItem = (id) => {
+    setLocalCartItems((currentItems) => currentItems.filter((item) => item.id !== id));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (currentStep === 1) {
-      setIsShippingComplete(true);
-      setCurrentStep(2);
-    } else if (currentStep === 2) {
-      setIsSummaryComplete(true);
-      setCurrentStep(3);
-    } else if (currentStep === 3) {
-      // Validate payment details based on selected payment method
-      if (formData.paymentMethod === 'creditCard' && (!formData.cardNumber || !formData.cardExpiry || !formData.cardCVC)) {
-        alert('Please fill in all credit card details.');
-        return;
-      }
-      if (formData.paymentMethod === 'upi' && !formData.upiId) {
-        alert('Please enter your UPI ID.');
-        return;
-      }
-      // Show success modal
-      setShowSuccessModal(true);
-      // Reset form and cart after placing the order
-      // setFormData({
-      //   name: '',
-      //   email: '',
-      //   address: '',
-      //   city: '',
-      //   state: '',
-      //   zip: '',
-      //   paymentMethod: '',
-      //   cardNumber: '',
-      //   cardExpiry: '',
-      //   cardCVC: '',
-      //   upiId: '',
-      // });
-      // setCartItems([]); // Clear cart items
-      // setCurrentStep(1); // Reset to the first step
-    }
+  const handleShippingSubmit = (event) => {
+    event.preventDefault();
+    setStep(2);
   };
 
-  const handleCloseModal = () => {
+  const placeDemoOrder = () => {
+    setCartItems([]);
+    setShowSuccessModal(true);
+  };
+
+  const closeSuccessModal = () => {
     setShowSuccessModal(false);
     navigate('/');
   };
 
+  if (!cartItems.length) {
+    return (
+      <Container className="my-5">
+        <h1 className="h2">Checkout</h1>
+        <p>Your cart is empty. Add a product before checking out.</p>
+        <Button onClick={() => navigate('/')}>Return to Store</Button>
+      </Container>
+    );
+  }
+
   return (
-    <Container className="mt-5">
-      <h2>Checkout</h2>
-      <Row>
-{/* STEP 1-> : Checkout Form */}
-        <Col md={6} className="checkout-form">
-          {/* Shipping Information Section */}
+    <Container className="my-5">
+      <h1 className="h2 mb-4">Checkout</h1>
+      <div className="row g-4">
+        <section className="col-lg-7" aria-label="Checkout steps">
           <Card className="mb-3">
-            <Card.Header className={isShippingComplete ? 'header-complete' : 'header-incomplete'}>
-              <div className="d-flex justify-content-between">
-                <h5>Delivery Address</h5>
-                {isShippingComplete && <span className="text-success">✔</span>}
-              </div>
-            </Card.Header>
-            {currentStep === 1 && (
+            <Card.Header>1. Delivery details</Card.Header>
+            {step === 1 ? (
               <Card.Body>
-                <Form onSubmit={handleSubmit}>
-                  <Form.Group controlId="formName">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text"
-                      placeholder="Enter your name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-
-                  <Form.Group controlId="formEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="email"
-                      placeholder="Enter your email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-
-                  <Form.Group controlId="formAddress">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your address"
-                      name="address"
-                      value={formData.address}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-
-                  <Form.Group controlId="formCity">
-                    <Form.Label>City</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your city"
-                      name="city"
-                      value={formData.city}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-
-                  <Form.Group controlId="formState">
-                    <Form.Label>State</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your state"
-                      name="state"
-                      value={formData.state}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-
-                  <Form.Group controlId="formZip">
-                    <Form.Label>Zip Code</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter your zip code"
-                      name="zip"
-                      value={formData.zip}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                  <Button variant="primary" type="submit" className="mt-3">
-                    Continue
-                  </Button>
+                <Form onSubmit={handleShippingSubmit}>
+                  {[
+                    ['name', 'Name', 'text'],
+                    ['email', 'Email', 'email'],
+                    ['address', 'Address', 'text'],
+                    ['city', 'City', 'text'],
+                    ['state', 'State / Region', 'text'],
+                    ['zip', 'Postal code', 'text'],
+                  ].map(([name, label, type]) => (
+                    <Form.Group className="mb-3" controlId={`shipping-${name}`} key={name}>
+                      <Form.Label>{label}</Form.Label>
+                      <Form.Control
+                        type={type}
+                        name={name}
+                        value={shipping[name]}
+                        onChange={(event) =>
+                          setShipping((current) => ({
+                            ...current,
+                            [name]: event.target.value,
+                          }))
+                        }
+                        required
+                      />
+                    </Form.Group>
+                  ))}
+                  <Button type="submit">Continue to review</Button>
                 </Form>
               </Card.Body>
-            )}
-            {isShippingComplete && currentStep !== 1 && (
+            ) : (
               <Card.Body>
-                <p>
-                  <strong>Name:</strong> {formData.name} | 
-                  <strong>Email:</strong> {formData.email} | 
-                  <strong>Address:</strong> {formData.address}, {formData.city}, {formData.state}, {formData.zip}
-                </p>  
-               <Button href="#" onClick={() => setCurrentStep(1)}> Edit</Button> 
+                <p className="mb-2">
+                  {shipping.name}<br />
+                  {shipping.address}, {shipping.city}, {shipping.state} {shipping.zip}<br />
+                  {shipping.email}
+                </p>
+                <Button variant="link" onClick={() => setStep(1)}>
+                  Edit delivery details
+                </Button>
               </Card.Body>
             )}
           </Card>
 
-{/* STEP-> 2 : Product Summary Section */}
-
-              <Card className="mb-3">
-                <Card.Header className={isSummaryComplete ? 'header-complete' : 'header-incomplete'}>
-                  <div className="d-flex justify-content-between">
-                    <h5>Order Summary</h5>
-                    {isSummaryComplete && <span className="text-success">✔️</span>}
-                  </div>
-                </Card.Header>
-
-                {currentStep === 2 && (
-                  <Card.Body>
-                    {cartItems.length > 0 ? (
-                      cartItems.map((item) => (
-                        <div key={item.id} className="d-flex justify-content-between align-items-center mb-2">
-
-                          <img  src={`/images/${item.image}`} alt={item.name} style={{ width: '100px', height: '100px' }} />
-                          <div className="flex-grow-1 mx-2">
-                            <h6>{item.name}</h6>
-                            <p>Price: ${item.price.toFixed(2)} | Quantity: {item.quantity}</p>
-=======
-                          <img  src={`/images/₹{item.image}`} alt={item.name} style={{ width: '100px', height: '100px' }} />
-                          <div className="flex-grow-1 mx-2">
-                            <h6>{item.name}</h6>
-                            <p>Price: ₹{item.price.toFixed(2)} | Quantity: {item.quantity}</p>
-
-                          </div>
-                          <div>
-                            <Button variant="outline-secondary" onClick={() => handleQuantityChange(item.id, -1)}>-</Button>
-                            <Button variant="outline-secondary" onClick={() => handleQuantityChange(item.id, 1)}>+</Button>
-                            <Button variant="danger" onClick={() => handleRemoveItem(item.id)}>Remove</Button>
-                          </div>
-                        </div>
-                      ))
-                    ) : (
-                      <p className="text-danger">Your cart is empty. Please add items to proceed.</p>
-                    )}
-                    <Button
-                      variant="primary"
-                      onClick={() => {
-                        if (cartItems.length > 0) {
-                          setIsSummaryComplete(true);
-                          setCurrentStep(3);
-                        } else {
-                          alert('Your cart is empty. Add items before proceeding!');
-                        }
-                      }}
-                    >
-                      Continue
-                    </Button>
-                  </Card.Body>
-                )}
-
-                {isShippingComplete && currentStep !== 2 && (
-                  <Card.Body>
-                    {/* Calculate total quantity */}
-                    <div>
-                      <p>
-                        <strong>Total Quantity:</strong> {cartItems.reduce((total, item) => total + item.quantity, 0)}
-                      </p>
-                    </div>
-                    <Button href="#" onClick={() => setCurrentStep(2)}> Edit</Button> 
-                    </Card.Body>
-                  
-                )}
-
-              </Card>       
-
-{/* STEP -> 3 : Payment Information Section */}
-    <Card className="mb-3">
-      <Card.Header className={isPaymentComplete ? 'header-complete' : 'header-incomplete'}>
-        <div className="d-flex justify-content-between">
-          <h5>Payment Option</h5>
-          {isPaymentComplete && <span className="text-success">✔️</span>}
-        </div>
-      </Card.Header>
-      {currentStep === 3 && (
-        <Card.Body>
-          <Form.Group controlId="formPaymentMethod" required>
-            <Form.Label>Select Payment Method</Form.Label>
-            <Form.Control as="select" name="paymentMethod" onChange={handleChange} required>
-              <option value="">Choose...</option>
-              <option value="upi">UPI</option>
-              <option value="creditCard">Credit/Debit Card</option>
-              <option value="cashOnDelivery">Cash on Delivery</option>
-            </Form.Control>
-          </Form.Group>
-
-          {formData.paymentMethod === 'creditCard' && (
-            <>
-              <Form.Group controlId="formCardNumber">
-                <Form.Label>Card Number</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your card number"
-                  name="cardNumber"
-                  value={formData.cardNumber}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="formCardExpiry">
-                <Form.Label>Expiry Date</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="MM/YY"
-                  name="cardExpiry"
-                  value={formData.cardExpiry}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="formCardCVC">
-                <Form.Label>CVC</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your CVC"
-                  name="cardCVC"
-                  value={formData.cardCVC}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-            </>
-          )}
-
-          {formData.paymentMethod === 'upi' && (
-            <Form.Group controlId="formUpiId">
-              <Form.Label>UPI ID</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your UPI ID"
-                name="upiId"
-                value={formData.upiId}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-          )}
-
-          {/* Conditionally render the Place Order button */}
-          {formData.paymentMethod && (
-            <Button variant="primary" onClick={handleSubmit} className="mt-3">
-              Place Order
-            </Button>
-          )}
-        </Card.Body>
-      )}
-    </Card>
-            </Col>
-
-{/* Order Details */}
-        <Col md={4} className="order-details">
-          <h5>Order Details</h5>
           <Card className="mb-3">
-            <Card.Body>
-              <Card.Title>Price Details</Card.Title>
-              <ListGroup className="list-group-flush">
+            <Card.Header>2. Review items</Card.Header>
+            {step === 2 && (
+              <Card.Body>
                 {cartItems.map((item) => (
-                  <ListGroup.Item key={item.id}>
-                    {item.name} x {item.quantity}: ₹{(item.price * item.quantity).toFixed(2)}
-                  </ListGroup.Item>
+                  <div
+                    className="d-flex justify-content-between align-items-center gap-3 mb-3"
+                    key={item.id}
+                  >
+                    <div className="flex-grow-1">
+                      <h2 className="h6 mb-1">{item.name}</h2>
+                      <p className="mb-0">₹{item.price.toFixed(2)} each</p>
+                    </div>
+                    <div className="d-flex align-items-center gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline-secondary"
+                        aria-label={`Decrease ${item.name} quantity`}
+                        onClick={() => updateQuantity(item.id, -1)}
+                      >
+                        -
+                      </Button>
+                      <span>{item.quantity}</span>
+                      <Button
+                        size="sm"
+                        variant="outline-secondary"
+                        aria-label={`Increase ${item.name} quantity`}
+                        onClick={() => updateQuantity(item.id, 1)}
+                      >
+                        +
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline-danger"
+                        onClick={() => removeItem(item.id)}
+                        aria-label={`Remove ${item.name}`}
+                      >
+                        Remove
+                      </Button>
+                    </div>
+                  </div>
                 ))}
-                <ListGroup.Item>Delivery Charges: FREE</ListGroup.Item>
-                <ListGroup.Item>Packaging Charge: ₹5.00</ListGroup.Item>
-                <ListGroup.Item>Protect Promise Fee: ₹3.00</ListGroup.Item>
-                <ListGroup.Item>
+                <hr />
+                <p className="fw-bold">Total: ₹{total.toFixed(2)}</p>
+                <p>
+                  This demo does not collect payment details or create a real order.
+                </p>
+                <div className="d-flex gap-2">
+                  <Button variant="outline-secondary" onClick={() => setStep(1)}>
+                    Back
+                  </Button>
+                  <Button onClick={placeDemoOrder} disabled={!cartItems.length}>
+                    Place demo order
+                  </Button>
+                </div>
+              </Card.Body>
+            )}
+          </Card>
+        </section>
 
-                  Total Payable: ${(cartItems.reduce((total, item) => total + item.price * item.quantity, 0) + 8.00) }
-=======
-                  Total Payable: ₹{(cartItems.reduce((total, item) => total + item.price * item.quantity, 0) + 8.00) }
-
-                </ListGroup.Item>
-              </ListGroup>
+        <aside className="col-lg-5" aria-label="Order total">
+          <Card>
+            <Card.Header>Order total</Card.Header>
+            <Card.Body>
+              {cartItems.map((item) => (
+                <p className="d-flex justify-content-between" key={item.id}>
+                  <span>{item.name} x {item.quantity}</span>
+                  <span>₹{(item.price * item.quantity).toFixed(2)}</span>
+                </p>
+              ))}
+              <hr />
+              <p className="d-flex justify-content-between fw-bold mb-0">
+                <span>Total</span>
+                <span>₹{total.toFixed(2)}</span>
+              </p>
             </Card.Body>
           </Card>
-        </Col>
-      </Row>
+        </aside>
+      </div>
 
-      {/* Success Modal */}
-      <Modal show={showSuccessModal} onHide={handleCloseModal}>
+      <Modal show={showSuccessModal} onHide={closeSuccessModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Order Placed Successfully!</Modal.Title>
+          <Modal.Title>Demo order complete</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="text-center">
-            <img src= '/images/ordered.gif' alt="Order Placed" style={{ width: '300px', height: '300px' }} />
-            <p>Your order has been placed successfully.</p>
-              <p>Thank you for shopping with us!</p>
-          </div>
+          This is a local UI demonstration. No payment was taken and no order was sent.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Close
-          </Button>
+          <Button onClick={closeSuccessModal}>Return to Store</Button>
         </Modal.Footer>
       </Modal>
-
-      
     </Container>
   );
 };
