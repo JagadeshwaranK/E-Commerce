@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# E-Commerce Storefront
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React storefront prototype for browsing a locally defined product catalog. It includes category browsing, search, a client-side cart, sign-up and login screens, and a demo checkout flow.
 
-## Available Scripts
+> [!IMPORTANT]
+> This is a frontend-only prototype, not a commerce service. Account credentials are stored in browser `localStorage`, the cart exists only in app memory, and checkout does not collect payment details or create a real order. Use test data only.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Browse products by category and search by product name
+- Adjust product quantities and add items to a client-side cart
+- Review and remove cart items
+- Enter delivery details and complete a clearly labeled demo checkout
+- Navigate the storefront with React Router
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React 19 with Create React App (`react-scripts`)
+- React Router 6
+- React Bootstrap and Bootstrap 5
+- Local JavaScript product catalog and static image assets
 
-### `npm test`
+## Run locally
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Requirements: Node.js and npm.
 
-### `npm run build`
+```bash
+npm ci
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The development server opens at [http://localhost:3000](http://localhost:3000).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Create a production build with:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm run build
+```
 
-### `npm run eject`
+Run the test runner with:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm test
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Project structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```text
+.
+├── public/
+│   └── images/                  # Product and storefront images
+└── src/
+    ├── components/
+    │   ├── ProductCategory.js   # Shared category and search results UI
+    │   ├── AddToCart.js         # Cart view
+    │   ├── Checkout.js          # Demo checkout flow
+    │   └── ...                  # Navigation, account, and page components
+    ├── data/products.js         # In-memory product catalog
+    ├── App.js                   # Routes and cart state
+    └── index.js                 # React entry point
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Prototype limitations
 
-## Learn More
+- There is no backend, API, database, inventory management, or order persistence.
+- Login is a local UI demonstration, not authentication. Passwords saved in `localStorage` are not protected.
+- Checkout is for interface demonstration only; it does not process payments.
+- Cart contents reset when the page is reloaded.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Do not use real credentials, payment information, or customer data. A production store would need a secured backend, proper authentication, server-side order handling, and a compliant payment provider.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributing
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Keep the prototype's limitations explicit, avoid adding real credential or payment collection to client-side code, and include tests for behavior changes.
